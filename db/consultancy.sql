@@ -1,0 +1,13 @@
+DROP TABLE IF EXISTS consultants;
+DROP TABLE IF EXISTS clients;
+
+CREATE TABLE clients (
+  id SERIAL PRIMARY KEY,
+  name VARCHAR(255)
+);
+
+CREATE TABLE consultants (
+  id SERIAL PRIMARY KEY,
+  name VARCHAR(255),
+  role VARCHAR(255)
+);
