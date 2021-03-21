@@ -1,13 +1,26 @@
+DROP TABLE IF EXISTS assignments;
 DROP TABLE IF EXISTS consultants;
 DROP TABLE IF EXISTS clients;
 
 CREATE TABLE clients (
   id SERIAL PRIMARY KEY,
-  name VARCHAR(255)
+  consultant_name VARCHAR(255),
+  role VARCHAR(255),
+  summary VARCHAR(255),
+  day_rate INT
 );
 
 CREATE TABLE consultants (
   id SERIAL PRIMARY KEY,
-  name VARCHAR(255),
+  client_name VARCHAR(255),
+  type_of_business VARCHAR(255),
+  consultants_hired VARCHAR(255),
   role VARCHAR(255)
+);
+
+CREATE TABLE assignments (
+  id SERIAL PRIMARY KEY,
+  consultant_id INT REFERENCES consultants(id) ON DELETE CASCADE,
+  client_id INT REFERENCES clients(id) ON DELEGE CASCADE,
+  rating INT
 );
