@@ -26,3 +26,8 @@ def select_all():
 def delete_all():
     sql = "DELETE  FROM assignments"
     run_sql(sql)
+
+def delete(id):
+    sql = "DELETE FROM assignments WHERE id = %s"
+    values = [id]
+    run_sql(sql,values)
