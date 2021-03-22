@@ -41,3 +41,19 @@ def delete(id):
     sql = "DELETE FROM clients WHERE id = %s"
     values = [id]
     run_sql(sql,values)
+
+# Find the clients by the consultant
+def clients(consultant):
+    values = [consultant.id]
+    sql = f"""
+            SELECT clients.* FROM clients
+            INNER JOIN assignments
+            ON clients.id = assignments.client_id
+            WHERE consultant_id = %s
+            """
+    results = run_sql(sql,values)
+    clients = []
+    for row in results:
+        client = Client(row['name'],row['type_of_business'],row['contact_details'], row['id'])
+        clients.append(client)
+    return clients

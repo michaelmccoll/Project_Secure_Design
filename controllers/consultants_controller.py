@@ -1,6 +1,6 @@
 from flask import Flask, render_template, request, redirect
 from flask import Blueprint
-from repositories import consultant_repository, client_repository
+from repositories import consultant_repository, client_repository, assignment_repository
 from models.consultant import Consultant
 
 consultants_blueprint = Blueprint("consultants",__name__)
@@ -23,3 +23,10 @@ def create_consultant():
     new_consultant = Consultant(name,role,summary,day_rate)
     consultant_repository.save(new_consultant)
     return redirect("/consultants")
+
+@consultants_blueprint.route("/consultants/<id>")
+def show_consultant(id):
+    consultant = consultant_repository.select(id)
+    found_clients = client_repository.clients(consultant) #needs created
+    found_assignments = assignment_repository.assignments(consultant) #needs created
+    return render_template("consultants/show.html",consultant=consultant,clients=found_clients,assignments=found_assignments)

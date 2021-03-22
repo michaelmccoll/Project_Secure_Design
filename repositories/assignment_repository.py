@@ -43,3 +43,19 @@ def delete(id):
     sql = "DELETE FROM assignments WHERE id = %s"
     values = [id]
     run_sql(sql,values)
+
+# Find the assignments by the consultant
+def assignments(consultant):
+    values = [consultant.id]
+    sql = f"""
+            SELECT assignments.* FROM assignments
+            INNER JOIN assignments
+            ON assignments.id = assignments.assignment_id
+            WHERE consultant_id = %s
+            """
+    results = run_sql(sql,values)
+    assignments = []
+    for row in results:
+        assignment = Assignment(row['description'],row['days_required'], row['id'])
+        assignments.append(assignment)
+    return assignments

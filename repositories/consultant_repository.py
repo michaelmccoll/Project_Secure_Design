@@ -33,7 +33,6 @@ def select(id):
         consultant = Consultant(result['name'],result['role'],result['summary'],result['day_rate'],result['id'])
     return consultant
 
-
 def delete_all():
     sql = "DELETE  FROM consultants"
     run_sql(sql)
