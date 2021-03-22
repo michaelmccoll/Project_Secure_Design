@@ -5,7 +5,7 @@ import repositories.client_repository as client_repository
 import repositories.assignment_repository as assignment_repository
 
 def save(assignment):
-    sql = "INSERT INTO assignments(consultant, client, days_required) VALUES (%s,%s,%s) RETURNING id"
+    sql = "INSERT INTO assignments(consultant_id, client_id, days_required) VALUES (%s,%s,%s) RETURNING id"
     values = [assignment.consultant.id,assignment.client.id,assignment.days_required]
     results = run_sql(sql,values)
     assignment.id = results[0]['id']
@@ -17,7 +17,10 @@ def select_all():
     results = run_sql(sql)
 
     for row in results:
-        # client = client_repository.select(row['client_id'])   # unsure if linked this way
-        assignment = Assignment(row['consultant'],row,['client'],row['days_required'],row['id'])
+        consultant = consultant_repository.select(row['consultant_id'])
+        client = client_repository.select(row['client_id'])
+        assignment = Assignment(consultant,client,row['days_required'],row['id'])
         assignments.append(assignment)
     return assignments
+
+### Need to create the SELECT functions for consultant and client ###

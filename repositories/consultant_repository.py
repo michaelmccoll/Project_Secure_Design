@@ -19,7 +19,6 @@ def select_all():
     results = run_sql(sql)
 
     for row in results:
-        # client = client_repository.select(row['client_id'])   # unsure if linked this way
-        consultant = Consultant(row['consultant_name'],row,['role'],row['summary'],row['day_rate'],row['id'])
+        consultant = Consultant(row['consultant_name'],row['role'],row['summary'],row['day_rate'],row['id'])
         consultants.append(consultant)
     return consultants

@@ -14,7 +14,7 @@ CREATE TABLE clients (
   id SERIAL PRIMARY KEY,
   client_name VARCHAR(255),
   type_of_business VARCHAR(255),
-  consultants_hired VARCHAR(255)
+  contact_details VARCHAR(255)
 );
 
 CREATE TABLE assignments (

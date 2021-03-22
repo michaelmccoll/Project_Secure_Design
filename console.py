@@ -24,15 +24,12 @@ consultant5 = Consultant('Murray Irvine','Senior Manager','Mobile application ar
 consultant_repository.save(consultant5)
 
 ### Client(client_name,type_of_business,consultants_hired) ###
-client1 = Client('Lloyds Banking Group','Financial Services','Michael')
+client1 = Client('Lloyds Banking Group','Financial Services','bob_anderson@lbg.co.uk')
 client_repository.save(client1)
-client2 = Client('AirBNB','Hospitality','John, Angela')
+client2 = Client('AirBNB','Hospitality','sourcing@airbnb.com')
 client_repository.save(client2)
-client3 = Client('Apple','IT','George, Murray')
+client3 = Client('Apple','IT','apple_hr@apple.com')
 client_repository.save(client3)
-    # May have to be in this format instead:
-    # client3 = Client('Apple','IT',[consultant4,consultant5])
-    # client_repository.save(client3)
 
 ### Assignment(consultant, client, days_required) ###
 assignment1 = Assignment(consultant1,client1,10)
@@ -41,6 +38,5 @@ assignment2 = Assignment(consultant2,client2,20)
 assignment_repository.save(assignment2)
 assignment3 = Assignment(consultant4,client3,30)
 assignment_repository.save(assignment3)
-    # May need to change Assignment class to be a list of consultants
 
 pdb.set_trace()
