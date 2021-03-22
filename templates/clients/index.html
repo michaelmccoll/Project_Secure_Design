@@ -4,9 +4,9 @@
     <h1>Index client page</h1>
         {% for client in all_clients %}
         <div>
-            <p>Name: {{client.client_name}}</p>
-            <p>Role: {{client.type_of_business}}</p>
-            <p>Summary: {{client.contact_details}}</p>
+            <p>Client Name: {{client.client_name}}</p>
+            <p>Type of Business: {{client.type_of_business}}</p>
+            <p>Contact Details: {{client.contact_details}}</p>
         </div>
         {% endfor %}
 {% endblock %}
