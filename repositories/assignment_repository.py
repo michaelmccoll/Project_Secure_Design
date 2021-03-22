@@ -23,4 +23,6 @@ def select_all():
         assignments.append(assignment)
     return assignments
 
-### Need to create the SELECT functions for consultant and client ###
+def delete_all():
+    sql = "DELETE  FROM assignments"
+    run_sql(sql)

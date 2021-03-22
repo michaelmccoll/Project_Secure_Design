@@ -7,9 +7,9 @@ import repositories.consultant_repository as consultant_repository
 import repositories.client_repository as client_repository
 import repositories.assignment_repository as assignment_repository
 
-# assignment_repository.delete_all()
-# client_repository.delete_all()
-# consultant_repository.delete_all()
+assignment_repository.delete_all()
+client_repository.delete_all()
+consultant_repository.delete_all()
 
 ### Consultant(consultant_name,role,summary,day_rate) ###
 consultant1 = Consultant('Michael McColl','Director','Risk and security consultant',400)

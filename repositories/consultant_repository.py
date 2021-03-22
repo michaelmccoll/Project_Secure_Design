@@ -22,3 +22,8 @@ def select_all():
         consultant = Consultant(row['consultant_name'],row['role'],row['summary'],row['day_rate'],row['id'])
         consultants.append(consultant)
     return consultants
+
+def delete_all():
+    sql = "DELETE  FROM consultants"
+    run_sql(sql)
+

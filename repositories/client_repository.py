@@ -22,3 +22,7 @@ def select_all():
         client = Client(row['client_name'],row['type_of_business'],row['contact_details'],row['id'])
         clients.append(client)
     return clients
+
+def delete_all():
+    sql = "DELETE  FROM clients"
+    run_sql(sql)
