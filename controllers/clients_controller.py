@@ -22,3 +22,10 @@ def create_client():
     new_client = Client(name,type_of_business,contact_details)
     client_repository.save(new_client)
     return redirect("/clients")
+
+@clients_blueprint.route("/clients/<id>")
+def show_client(id):
+    client = client_repository.select(id)
+    consultants = consultant_repository.consultants(client)
+    # found_assignments = assignment_repository.assignments(client)
+    return render_template("clients/show.html",client=client,consultants=consultants)

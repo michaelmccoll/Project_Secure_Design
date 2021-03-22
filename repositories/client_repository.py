@@ -57,3 +57,4 @@ def clients(consultant):
         client = Client(row['name'],row['type_of_business'],row['contact_details'], row['id'])
         clients.append(client)
     return clients
+

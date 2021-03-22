@@ -2,4 +2,13 @@
 
 {% block content %}
     <h1>Show client page</h1>
+    <h2>{{client.name}}</h2>
+        <ul>
+            {% for consultant in consultants %}
+            <p>{{consultant.name}}</p>
+            <p>{{consultant.role}}</p>
+            <p>{{consultant.day_rate}}</p>
+        {% endfor %}
+        </ul>
+
 {% endblock %}

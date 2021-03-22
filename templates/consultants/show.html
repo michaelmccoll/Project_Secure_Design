@@ -3,14 +3,16 @@
 {% block content %}
     <h1>Show consultant page</h1>
     <h2>{{consultant.name}}</h2>
-    <ul>
-        {% for client in found_clients %}
-        <li>{{client.name}}</li>
-        {% endfor %}
-    </ul>
-    <ul>
-        {% for assignment in found_assignments %}
-        <li>{{assignment.description}}</li>
-        {% endfor %}
-    </ul>
+        <ul>
+            {% for client in clients %}
+                <p>{{client.name}}</p>
+                <p>{{client.type_of_business}}</p>
+                <p>{{client.contact_details}}</p>
+            {% endfor %}
+        </ul>
+        <ul>
+            {% for assignment in found_assignments %}
+                <li>{{assignment.description}}</li>
+            {% endfor %}
+        </ul>
 {% endblock %}

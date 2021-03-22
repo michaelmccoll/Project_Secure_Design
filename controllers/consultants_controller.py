@@ -27,6 +27,6 @@ def create_consultant():
 @consultants_blueprint.route("/consultants/<id>")
 def show_consultant(id):
     consultant = consultant_repository.select(id)
-    found_clients = client_repository.clients(consultant) #needs created
-    found_assignments = assignment_repository.assignments(consultant) #needs created
-    return render_template("consultants/show.html",consultant=consultant,clients=found_clients,assignments=found_assignments)
+    clients = client_repository.clients(consultant)
+    # found_assignments = assignment_repository.assignments(consultant)
+    return render_template("consultants/show.html",consultant=consultant,clients=clients)
