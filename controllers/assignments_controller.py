@@ -9,3 +9,21 @@ assignments_blueprint = Blueprint("assignments",__name__)
 def assignments():
     assignments = assignment_repository.select_all()
     return render_template("assignments/index.html", all_assignments=assignments)
+
+@assignments_blueprint.route("/assignments/new")
+def new_assignment():
+    consultants = consultant_repository.select_all()
+    clients = client_repository.select_all()
+    return render_template("assignments/new.html", all_consultants=consultants, all_clients=clients)
+
+@assignments_blueprint.route("/assignments", methods=['POST'])
+def create_assignment():
+    description = request.form["description"]
+    consultant_id = request.form["consultant_id"]
+    consultant = consultant_repository.select(consultant_id)
+    client_id = request.form["client_id"]
+    client = client_repository.select(client_id)
+    days_required = request.form["days_required"]
+    new_assignment = Assignment(description,consultant,client,days_required)
+    assignment_repository.save(new_assignment)
+    return redirect("/assignments")

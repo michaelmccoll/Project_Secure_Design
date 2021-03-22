@@ -2,4 +2,23 @@
 
 {% block content %}
     <h1>New consultant page</h1>
+        <form action="/consultants" method="POST">
+            <div>
+                <label for="name">Consultant Name: </label>
+                <input type="text" name="name" id="name">
+
+                <label for="role">Role: </label>
+                <input type="text" name="role" id="role">
+
+                <label for="summary">Summary: </label>
+                <input type="text" name="summary" id="summary">
+
+                <label for="day_rate">Day Rate: </label>
+                <input type="int" name="day_rate" id="day_rate">
+
+                <input type="submit">
+
+            </div>
+        
+        </form>
 {% endblock %}

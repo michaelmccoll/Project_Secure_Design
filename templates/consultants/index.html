@@ -2,6 +2,7 @@
 
 {% block content %}
     <h1>Index consultant page</h1>
+    <a href="/consultants/new">Create new consultant</a>
         {% for consultant in all_consultants %}
             <div>
                 <p>Consultant Name: {{consultant.name}}</p>

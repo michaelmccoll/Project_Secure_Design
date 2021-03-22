@@ -2,12 +2,14 @@
 
 {% block content %}
     <h1>Index assignment page</h1>
+    <a href="/assignments/new">Create a new assignment</a>
     {% for assignment in all_assignments %}
     <div>
         <p>Assignment Description: {{assignment.description}}</p>
         <p>Consultant Assigned: {{assignment.consultant.name}}</p>
         <p>Client: {{assignment.client.name}}</p>
         <p>Days Required: {{assignment.days_required}}</p>
+        <p>Total Cost: #TBC#</p>
     </div>
     {% endfor %}
 {% endblock %}

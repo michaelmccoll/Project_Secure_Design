@@ -5,7 +5,7 @@ import repositories.client_repository as client_repository
 import repositories.assignment_repository as assignment_repository
 
 def save(assignment):
-    sql = "INSERT INTO assignments(description, consultant_id, client_id, days_required) VALUES (%s,%s,%s) RETURNING id"
+    sql = "INSERT INTO assignments(description, consultant_id, client_id, days_required) VALUES (%s,%s,%s,%s) RETURNING id"
     values = [assignment.description,assignment.consultant.id,assignment.client.id,assignment.days_required]
     results = run_sql(sql,values)
     assignment.id = results[0]['id']
@@ -22,6 +22,18 @@ def select_all():
         assignment = Assignment(row['description'],consultant,client,row['days_required'],row['id'])
         assignments.append(assignment)
     return assignments
+
+def select(id):
+    assignment = None
+    sql = "SELECT * FROM assignments WHERE id = %s"
+    values = [id]
+    result = run_sql(sql,values)[0]
+    consultant = consultant_repository.select(result['consultant_id'])
+    client = client_repository.select(result['client_id'])
+
+    if result is not None:
+        assignment = Assignment(result['description'],consultant,client,result['days_required'],result['id'])
+    return assignment
 
 def delete_all():
     sql = "DELETE  FROM assignments"

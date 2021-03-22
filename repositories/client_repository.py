@@ -23,6 +23,16 @@ def select_all():
         clients.append(client)
     return clients
 
+def select(id):
+    client = None
+    sql = "SELECT * FROM clients WHERE id = %s"
+    values = [id]
+    result = run_sql(sql,values)[0]
+
+    if result is not None:
+        client = Client(result['name'],result['type_of_business'],result['contact_details'],result['id'])
+    return client
+
 def delete_all():
     sql = "DELETE  FROM clients"
     run_sql(sql)

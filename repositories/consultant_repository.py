@@ -23,6 +23,17 @@ def select_all():
         consultants.append(consultant)
     return consultants
 
+def select(id):
+    consultant = None
+    sql = "SELECT * FROM consultants WHERE id = %s"
+    values = [id]
+    result = run_sql(sql,values)[0]
+
+    if result is not None:
+        consultant = Consultant(result['name'],result['role'],result['summary'],result['day_rate'],result['id'])
+    return consultant
+
+
 def delete_all():
     sql = "DELETE  FROM consultants"
     run_sql(sql)

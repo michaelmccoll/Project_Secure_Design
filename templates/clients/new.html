@@ -2,4 +2,20 @@
 
 {% block content %}
     <h1>New client page</h1>
+        <form action="/clients" method="POST">
+            <div>
+                <label for="name">Client Name: </label>
+                <input type="text" name="name" id="name">
+
+                <label for="type_of_business">Type of Business: </label>
+                <input type="text" name="type_of_business" id="type_of_business">
+
+                <label for="contact_details">Contact Details: </label>
+                <input type="text" name="contact_details" id="contact_details">
+
+                <input type="submit">
+
+            </div>
+        
+        </form>
 {% endblock %}

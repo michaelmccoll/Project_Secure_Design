@@ -2,6 +2,7 @@
 
 {% block content %}
     <h1>Index client page</h1>
+    <a href="/clients/new">Create new client</a>
         {% for client in all_clients %}
         <div>
             <p>Client Name: {{client.name}}</p>

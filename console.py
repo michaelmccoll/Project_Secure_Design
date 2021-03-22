@@ -32,11 +32,11 @@ client3 = Client('Apple','IT','apple_hr@apple.com')
 client_repository.save(client3)
 
 ### Assignment(consultant, client, days_required) ###
-assignment1 = Assignment(consultant1,client1,10)
+assignment1 = Assignment("Create a web app",consultant1,client1,10)
 assignment_repository.save(assignment1)
-assignment2 = Assignment(consultant2,client2,20)
+assignment2 = Assignment("Develop some backend code",consultant2,client2,20)
 assignment_repository.save(assignment2)
-assignment3 = Assignment(consultant4,client3,30)
+assignment3 = Assignment("Design new itunes UX",consultant4,client3,30)
 assignment_repository.save(assignment3)
 
 pdb.set_trace()
