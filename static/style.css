@@ -1,3 +1,31 @@
-h1 {
-    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+body {
+    font-family:'Montserrat', sans-serif;
+    padding:12px;
+    background-color: #F0EDEE;
+    color:#074A88;
 }
+
+div {
+    padding: 10px;
+}
+
+h1 {
+    padding: 10px;
+}
+
+body > a {
+    padding: 10px;
+    border-radius: 10px;
+    border-style:outset;
+    border-width: 2px;
+    text-decoration: none;
+    background-color: #C5E1FC;
+    display:flex;
+    align-items: flex-end;
+}
+
+/* Colour Scheme (via Coolers)
+F0EDEE - Isabelline
+074A88 - Yale Blue
+C5E1FC - Beau Blue
+DD5040 - Cinnabar */

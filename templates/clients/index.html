@@ -5,9 +5,10 @@
     <a href="/clients/new">Create new client</a>
         {% for client in all_clients %}
         <div>
-            <p>Client Name: {{client.name}}</p>
-            <p>Type of Business: {{client.type_of_business}}</p>
-            <p>Contact Details: {{client.contact_details}}</p>
+            <hr>
+            <h2><b>Client Name: {{client.name}}</b></h2>
+            <p><b>Type of Business: </b>{{client.type_of_business}}</p>
+            <p><b>Contact Details: </b>{{client.contact_details}}</p>
         </div>
         {% endfor %}
 {% endblock %}

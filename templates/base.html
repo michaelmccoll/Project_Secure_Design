@@ -4,13 +4,16 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap');</style>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='header.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='footer.css') }}">
     <title>Consultancy App</title>
 </head>
 <body>
     <header>
-        <h1>Consultancy App</h1>
-        <ul>
+        <ul class="header">
+            <li><a href="" class="logo">Codeclan Consultancy</a></li>
             <li><a href="/">Home</a></li>
             <li><a href="/consultants">Consultants</a></li>
             <li><a href="/clients">Clients</a></li>
@@ -21,5 +24,12 @@
     {% block content %}
     
     {% endblock %}
+    <footer>
+        <ul class="footer">
+            <li>Codeclan Consultancy</li>
+            <li>123 Princes Street, Edinburgh, EH1 2QW</li>
+            <li>info@codeclan.com</li>
+        </ul>
+    </footer>
 </body>
 </html>

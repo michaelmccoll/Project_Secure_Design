@@ -5,10 +5,11 @@
     <a href="/consultants/new">Create new consultant</a>
         {% for consultant in all_consultants %}
             <div>
-                <p>Consultant Name: {{consultant.name}}</p>
-                <p>Role: {{consultant.role}}</p>
-                <p>Summary: {{consultant.summary}}</p>
-                <p>Day Rate: {{consultant.day_rate}}</p>
+                <hr>
+                <h2><b>Consultant Name: {{consultant.name}}</b></h2>
+                <p><b>Role: </b>{{consultant.role}}</p>
+                <p><b>Summary: </b>{{consultant.summary}}</p>
+                <p><b>Day Rate: </b>{{consultant.day_rate}}</p>
             </div>
         {% endfor %}
 {% endblock %}

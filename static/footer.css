@@ -1,0 +1,15 @@
+.footer {
+    display: flex;
+    background-color: #074A88;
+    padding-inline-start: 10px;
+    padding-inline-end: 10px;
+    position: relative;
+    justify-content: space-evenly;
+}
+
+footer > ul > li {
+    text-decoration: none;
+    color:white;
+    list-style: none;
+    padding: 10px;
+}
