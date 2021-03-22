@@ -1,6 +1,7 @@
 class Assignment:
 
-    def __init__(self, consultant, client, days_required, id = None):
+    def __init__(self, description, consultant, client, days_required, id = None):
+        self.description = description
         self.consultant = consultant
         self.client = client
         self.days_required = days_required

@@ -7,7 +7,7 @@ class TestConsultant(unittest.TestCase):
         self.consultant = Consultant("John Smith","Director","IT backend architect",550)
 
     def test_consultant_has_name(self):
-        self.assertEqual("John Smith",self.consultant.consultant_name)
+        self.assertEqual("John Smith",self.consultant.name)
 
     def test_consultant_has_role(self):
         self.assertEqual("Director",self.consultant.role)

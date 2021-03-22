@@ -5,8 +5,8 @@ import repositories.client_repository as client_repository
 import repositories.assignment_repository as assignment_repository
 
 def save(assignment):
-    sql = "INSERT INTO assignments(consultant_id, client_id, days_required) VALUES (%s,%s,%s) RETURNING id"
-    values = [assignment.consultant.id,assignment.client.id,assignment.days_required]
+    sql = "INSERT INTO assignments(description, consultant_id, client_id, days_required) VALUES (%s,%s,%s) RETURNING id"
+    values = [assignment.description,assignment.consultant.id,assignment.client.id,assignment.days_required]
     results = run_sql(sql,values)
     assignment.id = results[0]['id']
     return assignment
@@ -19,7 +19,7 @@ def select_all():
     for row in results:
         consultant = consultant_repository.select(row['consultant_id'])
         client = client_repository.select(row['client_id'])
-        assignment = Assignment(consultant,client,row['days_required'],row['id'])
+        assignment = Assignment(row['description'],consultant,client,row['days_required'],row['id'])
         assignments.append(assignment)
     return assignments
 

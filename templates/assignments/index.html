@@ -4,8 +4,9 @@
     <h1>Index assignment page</h1>
     {% for assignment in all_assignments %}
     <div>
-        <p>Consultant Assigned: {{assignment.consultant.consultant_name}}</p>
-        <p>Client: {{assignment.client.client_name}}</p>
+        <p>Assignment Description: {{assignment.description}}</p>
+        <p>Consultant Assigned: {{assignment.consultant.name}}</p>
+        <p>Client: {{assignment.client.name}}</p>
         <p>Days Required: {{assignment.days_required}}</p>
     </div>
     {% endfor %}
