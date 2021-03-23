@@ -4,6 +4,7 @@
     <h1>Show client page</h1>
     <div>
         <h2>{{client.name}}</h2>
+        <a href="/clients/{{client.id}}/edit">Edit Client</a>
             <ul>
                 {% for consultant in consultants %}
                 <hr>

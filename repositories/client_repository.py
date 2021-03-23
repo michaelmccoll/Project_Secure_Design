@@ -58,3 +58,7 @@ def clients(consultant):
         clients.append(client)
     return clients
 
+def update(client):
+    sql = "UPDATE clients SET (name,type_of_business,contact_details) = (%s,%s,%s) WHERE id = %s"
+    values = [client.name,client.type_of_business,client.contact_details,client.id]
+    run_sql(sql,values)
