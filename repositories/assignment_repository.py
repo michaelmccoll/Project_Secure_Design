@@ -43,3 +43,9 @@ def delete(id):
     sql = "DELETE FROM assignments WHERE id = %s"
     values = [id]
     run_sql(sql,values)
+
+# Not sure if this one working yet
+def update(assignment):
+    sql = "UPDATE assignments SET (description,consultant,client,days_required) = (%s,%s,%s,%s) WHERE id = %s"
+    values = [assignment.description,assignment.consultant.id,assignment.client.id,assignment.days_required,assignment.id]
+    run_sql(sql,values)

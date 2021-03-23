@@ -2,4 +2,33 @@
 
 {% block content %}
     <h1>Edit assignment page</h1>
+    <form action="/assignments/{{assignment.id}}" method="POST">
+        <div>
+            <label for="description">Assignment Description: </label>
+            <input type="text" name="description" id="description" value="{{assignment.description}}">
+
+            <label for="consultant_id">Consultant Name: </label>
+            <select name="consultant_id" id="consultant_id">
+                {% for consultant in all_consultants %}
+                <option value="{{consultant.id}}">
+                    {{consultant.name}}
+                </option>
+                {% endfor %}
+            </select>
+
+            <label for="client_id">Client Name: </label>
+            <select name="client_id" id="client_id">
+                {% for client in all_clients %}
+                <option value="{{client.id}}">
+                    {{client.name}}
+                </option>
+                {% endfor %}
+            </select>
+
+            <label for="days_required">Days Required: </label>
+            <input type="text" name="days_required" id="days_required" value="{{assignment.days_required}}">
+
+            <input class="submit" type="submit">
+        </div>
+    </form>
 {% endblock %}
