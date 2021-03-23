@@ -31,3 +31,7 @@ option {
     margin: 4px;
     width: 200px;
 }
+
+form {
+    margin: 15px;
+}

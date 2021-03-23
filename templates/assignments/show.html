@@ -2,36 +2,36 @@
 
 {% block content %}
     <h1>Show assignment page</h1>
-    <div>
-        <h2>{{assignment.description}}</h2>
         <div>
-            <form action="/assignments/{{assignment.id}}/edit">
-                <input class="submit" type="submit" value="Edit Assignment">
-            </form>
+            <h1>{{assignment.description}}</h1>
+            <div>
+                <form action="/assignments/{{assignment.id}}/edit">
+                    <input class="submit" type="submit" value="Edit Assignment">
+                </form>
 
-            <form action="/assignments/{{assignment.id}}/delete" method="POST">
-                <input class="submit" type="submit" value="Delete Assignment">
-            </form>
-        </div>
-        <div>
-            <ul>
-                {% for client in clients %}
+                <form action="/assignments/{{assignment.id}}/delete" method="POST">
+                    <input class="submit" type="submit" value="Delete Assignment">
+                </form>
+            </div>
+            <div>
+                <ul>
+                    {% for client in clients %}
+                        <hr>
+                        <p>{{client.name}}</p>
+                        <p>{{client.type_of_business}}</p>
+                        <p>{{client.contact_details}}</p>
+                    {% endfor %}
+                </ul>
+            </div>
+            <div>
+                <ul>
+                    {% for consultant in consultants %}
                     <hr>
-                    <p>{{client.name}}</p>
-                    <p>{{client.type_of_business}}</p>
-                    <p>{{client.contact_details}}</p>
-                {% endfor %}
-            </ul>
+                        <p>{{consultant.name}}</p>
+                        <p>{{consultant.role}}</p>
+                        <p>{{consultant.day_rate}}</p>
+                    {% endfor %}
+                </ul>
+            </div>
         </div>
-        <div>
-            <ul>
-                {% for consultant in consultants %}
-                <hr>
-                    <p>{{consultant.name}}</p>
-                    <p>{{consultant.role}}</p>
-                    <p>{{consultant.day_rate}}</p>
-                {% endfor %}
-            </ul>
-        </div>
-    </div>
 {% endblock %}

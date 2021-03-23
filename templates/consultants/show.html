@@ -7,11 +7,17 @@
         <h3 class="role">{{consultant.role}}</h3>
         <h3 class="summary">{{consultant.summary}}</h3>
         <h3 class="day_rate">{{consultant.day_rate}}</h3>
-        <div>
+
+        <div class="picture">
+            <img src="/static/profiles/mmccoll.jpeg" alt="">
+        </div>
+
+        <div class="update">
             <form action="/consultants/{{consultant.id}}/edit">
                 <input class="submit" type="submit" value="Edit Consultant">
             </form>
-
+        </div>
+        <div class="delete">
             <form action="/consultants/{{consultant.id}}/delete" method="POST">
                 <input class="submit" type="submit" value="Delete Consultant">
             </form>
@@ -19,10 +25,10 @@
 
         <div class="clients">
             <ul>
+                <h3>Clients:</h3>
                 {% for client in clients %}
                     <div>
                         <p>{{client.name}}</p>
-                        <p>{{client.type_of_business}}</p>
                     </div> 
                 {% endfor %}
             </ul>
@@ -30,6 +36,7 @@
 
         <div class="assignments">
             <ul>
+                <h3>Assignments:</h3>
                 {% for assignment in assignments %}
                     <div>
                         <p>{{assignment.description}}</p>

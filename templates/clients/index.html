@@ -3,13 +3,15 @@
 {% block content %}
     <h1>Index client page</h1>
     <a href="/clients/new">Create new client</a>
+    <div class="index">
         {% for client in all_clients %}
         <div>
             <hr>
-            <h2><b>Client Name: {{client.name}}</b></h2>
+            <h2><b>Client: {{client.name}}</b></h2>
             <p><b>Type of Business: </b>{{client.type_of_business}}</p>
             <p><b>Contact Details: </b>{{client.contact_details}}</p>
             <a href="/clients/{{client.id}}">Consultants Assigned</a>
         </div>
         {% endfor %}
+    </div>
 {% endblock %}

@@ -3,14 +3,15 @@
 {% block content %}
     <h1>Index consultant page</h1>
     <a href="/consultants/new">Create new consultant</a>
+    <div class="index">
         {% for consultant in all_consultants %}
             <div>
                 <hr>
-                <h2><b>Consultant Name: {{consultant.name}}</b></h2>
+                <h2><b>Consultant: {{consultant.name}}</b></h2>
                 <p><b>Role: </b>{{consultant.role}}</p>
                 <p><b>Summary: </b>{{consultant.summary}}</p>
-                <p><b>Day Rate: </b>{{consultant.day_rate}}</p>
                 <a href="/consultants/{{consultant.id}}">More Details</a>
             </div>
         {% endfor %}
+    </div>
 {% endblock %}
