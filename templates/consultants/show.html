@@ -2,8 +2,11 @@
 
 {% block content %}
     <h1>Show consultant page</h1>
-    <div>
-        <h2>{{consultant.name}}</h2>
+    <div class="profile">
+        <h2 class="name">{{consultant.name}}</h2>
+        <h3 class="role">{{consultant.role}}</h3>
+        <h3 class="summary">{{consultant.summary}}</h3>
+        <h3 class="day_rate">{{consultant.day_rate}}</h3>
         <div>
             <form action="/consultants/{{consultant.id}}/edit">
                 <input class="submit" type="submit" value="Edit Consultant">
@@ -13,18 +16,27 @@
                 <input class="submit" type="submit" value="Delete Consultant">
             </form>
         </div>
+
+        <div class="clients">
             <ul>
                 {% for client in clients %}
-                    <hr>
-                    <p>{{client.name}}</p>
-                    <p>{{client.type_of_business}}</p>
-                    <p>{{client.contact_details}}</p>
+                    <div>
+                        <p>{{client.name}}</p>
+                        <p>{{client.type_of_business}}</p>
+                    </div> 
                 {% endfor %}
             </ul>
+        </div>
+
+        <div class="assignments">
             <ul>
-                {% for assignment in found_assignments %}
-                    <li>{{assignment.description}}</li>
+                {% for assignment in assignments %}
+                    <div>
+                        <p>{{assignment.description}}</p>
+                    </div>
                 {% endfor %}
             </ul>
+        </div>
+
     </div>
 {% endblock %}

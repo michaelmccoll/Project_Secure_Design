@@ -1,0 +1,74 @@
+.name {
+    grid-area: name;
+    border:dashed;
+    border-width: 2px;
+    border-color: rgb(182, 179, 179);
+    margin: 4px;
+    padding: 4px;
+}
+
+.picture {
+    grid-area: picture;
+    border:dashed;
+    border-width: 2px;
+    border-color: rgb(182, 179, 179);
+    margin: 4px;
+    padding: 4px;
+}
+
+.role {
+    grid-area: role;
+    border:dashed;
+    border-width: 2px;
+    border-color: rgb(182, 179, 179);
+    margin: 4px;
+    padding: 4px;
+}
+
+.summary {
+    grid-area: summary;
+    border:dashed;
+    border-width: 2px;
+    border-color: rgb(182, 179, 179);
+    margin: 4px;
+    padding: 4px;
+}
+
+.day_rate {
+    grid-area: day_rate;
+    border:dashed;
+    border-width: 2px;
+    border-color: rgb(182, 179, 179);
+    margin: 4px;
+    padding: 4px;
+}
+
+.clients {
+    grid-area: clients;
+    border:dashed;
+    border-width: 2px;
+    border-color: rgb(182, 179, 179);
+    margin: 4px;
+    padding: 4px;
+}
+
+.assignments {
+    grid-area: assignments;
+    border:dashed;
+    border-width: 2px;
+    border-color: rgb(182, 179, 179);
+    margin: 4px;
+    padding: 4px;
+}
+
+.profile {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-rows: auto;
+    margin: 4px;
+    padding: 4px;
+    grid-template-areas:
+        "name name name picture"
+        "role summary summary day_rate"
+        "clients clients assignments assignments";
+}

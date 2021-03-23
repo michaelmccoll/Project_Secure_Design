@@ -49,3 +49,12 @@ def update(assignment):
     sql = "UPDATE assignments SET (description,consultant,client,days_required) = (%s,%s,%s,%s) WHERE id = %s"
     values = [assignment.description,assignment.consultant.id,assignment.client.id,assignment.days_required,assignment.id]
     run_sql(sql,values)
+
+# Need to update database table with a new total_cost variable
+# def total_cost(id):
+#     sql = "SELECT * FROM assignments WHERE id = %s"
+#     values = [id]
+#     result = run_sql(sql,values)[0]
+#     consultant = consultant_repository.select(result['consultant_id'])
+#     total_cost = consultant.day_rate * assignment.days_required
+#     return total_cost
