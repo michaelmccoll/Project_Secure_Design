@@ -3,6 +3,8 @@
     background-color: #074A88;
     padding-inline-start: 10px;
     padding-inline-end: 10px;
+    background-image: url(../static/img/header_background.png);
+    background-repeat: no-repeat;
   }
 
 .header li:first-child {
@@ -11,20 +13,28 @@
 
 .header li {
     list-style: none;
+    margin-left: auto;
+    margin-top: auto;
+    margin-bottom: auto;
 }
 
 .header a {
     margin: 10px;
     border-radius: 10px;
-    background: #DD5040;
+    background: #8b2fc9;
     color: #fff;
     display: block;
     padding: 15px 15px;
     text-decoration: none;
     font-size:15px ;
+    font-weight: bold;
+    border-color: white;
+    border-style: outset;
+    border-width: 2px;
 }
 
 .header .logo {
     background: #074A88;
     font-size: 26px;
+    border-style: none;
 }
