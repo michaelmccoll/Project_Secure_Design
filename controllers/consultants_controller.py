@@ -45,3 +45,8 @@ def update_consultant(id):
     consultant = Consultant(name,role,summary,day_rate,id)
     consultant_repository.update(consultant)
     return redirect("/consultants")
+
+@consultants_blueprint.route("/consultants/<id>/delete", methods=['POST'])
+def delete_consultant(id):
+    consultant_repository.delete(id)
+    return redirect ("/consultants")

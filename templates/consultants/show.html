@@ -4,7 +4,16 @@
     <h1>Show consultant page</h1>
     <div>
         <h2>{{consultant.name}}</h2>
-        <a href="/consultants/{{consultant.id}}/edit">Edit Consultant</a>
+        <div>
+            
+            <form action="/consultants/{{consultant.id}}/edit">
+                <input class="submit" type="submit" value="Edit Consultant">
+            </form>
+
+            <form action="/consultants/{{consultant.id}}/delete" method="POST">
+                <input class="submit" type="submit" value="Delete Consultant">
+            </form>
+        </div>
             <ul>
                 {% for client in clients %}
                     <hr>
