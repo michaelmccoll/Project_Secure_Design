@@ -30,3 +30,18 @@ def show_consultant(id):
     clients = client_repository.clients(consultant)
     # found_assignments = assignment_repository.assignments(consultant)
     return render_template("consultants/show.html",consultant=consultant,clients=clients)
+
+@consultants_blueprint.route("/consultants/<id>/edit", methods=['GET'])
+def edit_consultant(id):
+    consultant = consultant_repository.select(id)
+    return render_template("/consultants/edit.html", consultant=consultant)
+
+@consultants_blueprint.route("/consultants/<id>", methods=['POST'])
+def update_consultant(id):
+    name = request.form["name"]
+    role = request.form["role"]
+    summary = request.form["summary"]
+    day_rate = request.form["day_rate"]
+    consultant = Consultant(name,role,summary,day_rate,id)
+    consultant_repository.update(consultant)
+    return redirect("/consultants")

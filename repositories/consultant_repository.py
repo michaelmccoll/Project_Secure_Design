@@ -57,3 +57,8 @@ def consultants(client):
         consultant = Consultant(row['name'],row['role'],row['summary'],row['day_rate'], row['id'])
         consultants.append(consultant)
     return consultants
+
+def update(consultant):
+    sql = "UPDATE consultants SET (name,role,summary,day_rate) = (%s,%s,%s,%s) WHERE id = %s"
+    values = [consultant.name,consultant.role,consultant.summary,consultant.day_rate,consultant.id]
+    run_sql(sql,values)
