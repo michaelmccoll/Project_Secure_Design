@@ -26,7 +26,8 @@ def create_assignment():
     start_date = request.form["start_date"]
     end_date = request.form["end_date"]
     days_required = request.form["days_required"]
-    new_assignment = Assignment(description,consultant,client,days_required,start_date,end_date)
+    calculate_costs = Assignment.calculate_costs(consultant.day_rate,days_required)
+    new_assignment = Assignment(description,consultant,client,days_required,start_date,end_date, calculate_costs)
     assignment_repository.save(new_assignment)
     return redirect("/assignments")
 
@@ -42,12 +43,15 @@ def show_assignment(id):
 @assignments_blueprint.route("/assignments/<id>", methods=['POST'])
 def update_assignment(id):
     description = request.form["description"]
+    consultant_id = request.form["consultant_id"]
     consultant = consultant_repository.select(consultant_id)  # Problem here, consultant_id not recognised
+    client_id = request.form["client_id"]
     client = client_repository.select(client_id)
     start_date = request.form["start_date"]
     end_date = request.form["end_date"]
     days_required = request.form["days_required"]
-    assignment = Assignment(description,consultant,client,days_required,start_date,end_date,id)
+    total_cost = 890
+    assignment = Assignment(description,consultant,client,days_required,start_date,end_date,total_cost,id)
     assignment_repository.update(assignment)
     return redirect("/assignments")
 
@@ -56,7 +60,7 @@ def edit_assignment(id):
     assignment = assignment_repository.select(id)
     clients = client_repository.select_all()
     consultants = consultant_repository.select_all()
-    return render_template("/assignments/edit.html", assignment=assignment,clients=clients,consultants=consultant_repository)
+    return render_template("/assignments/edit.html", assignment=assignment,clients=clients,consultants=consultants)
 
 @assignments_blueprint.route("/assignments/<id>/delete", methods=['POST'])
 def delete_assignment(id):

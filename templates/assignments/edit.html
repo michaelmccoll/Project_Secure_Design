@@ -7,20 +7,20 @@
             <label for="description">Assignment Description: </label>
             <input type="text" name="description" id="description" value="{{assignment.description}}">
 
-            <label for="consultant">Consultant Name: </label>
-            <select name="consultant_id" id="consultant">
+            <label for="consultant_id">Consultant Name: </label>
+            <select name="consultant_id" id="consultant_id">
                 {% for consultant in consultants %}
-                <option value="{{consultant.id}}">
+                <option value="{{consultant.id}}"
                     {% if assignment.consultant.id == consultant.id %} selected="selected" {% endif %}>
                     {{consultant.name}}
                 </option>
                 {% endfor %}
             </select>
 
-            <label for="client">Client Name: </label>
-            <select name="client_id" id="client">
+            <label for="client_id">Client Name: </label>
+            <select name="client_id" id="client_id">
                 {% for client in clients %}
-                <option value="{{client.id}}">
+                <option value="{{client.id}}"
                     {% if assignment.client.id == client.id %} selected="selected" {% endif %}>
                     {{client.name}}
                 </option>

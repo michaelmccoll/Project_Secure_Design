@@ -5,7 +5,7 @@ import repositories.client_repository as client_repository
 import repositories.assignment_repository as assignment_repository
 
 def save(assignment):
-    sql = "INSERT INTO assignments(description, consultant_id, client_id, days_required, start_date, end_date, total_cost) VALUES (%s,%s,%s,%s,%s,%s,%s) RETURNING id"
+    sql = "INSERT INTO assignments(description, consultant_id, client_id, days_required, start_date, end_date, total_cost) VALUES (%s,%s,%s,%s,%s,%s,%s) RETURNING *"
     values = [assignment.description,assignment.consultant.id,assignment.client.id,assignment.days_required,assignment.start_date,assignment.end_date,assignment.total_cost]
     results = run_sql(sql,values)
     assignment.id = results[0]['id']
@@ -44,17 +44,24 @@ def delete(id):
     values = [id]
     run_sql(sql,values)
 
-# Not sure if this one working yet
 def update(assignment):
-    sql = "UPDATE assignments SET (description, consultant, client, days_required, start_date, end_date, total_cost) = (%s,%s,%s,%s,%s,%s,%s) WHERE id = %s"
-    values = [assignment.description,assignment.consultant.id,assignment.client.id,assignment.days_required,assignmnet.start_date,assignment.end_date,assignment.total_cost,assignment.id]
+    sql = "UPDATE assignments SET (description, consultant_id, client_id, days_required, start_date, end_date, total_cost) = (%s,%s,%s,%s,%s,%s,%s) WHERE id = %s"
+    values = [assignment.description,assignment.consultant.id,assignment.client.id,assignment.days_required,assignment.start_date,assignment.end_date,assignment.total_cost,assignment.id]
     run_sql(sql,values)
 
-# Need to update database table with a new total_cost variable
-# def total_cost(id):
-#     sql = "SELECT * FROM assignments WHERE id = %s"
-#     values = [id]
-#     result = run_sql(sql,values)[0]
-#     consultant = consultant_repository.select(result['consultant_id'])
-#     total_cost = consultant.day_rate * assignment.days_required
-#     return total_cost
+# NEED Find assingments by the consultant ###
+# Find the clients by the consultant
+def clients(consultant):
+    values = [consultant.id]
+    sql = f"""
+            SELECT clients.* FROM clients
+            INNER JOIN assignments
+            ON clients.id = assignments.client_id
+            WHERE consultant_id = %s
+            """
+    results = run_sql(sql,values)
+    clients = []
+    for row in results:
+        client = Client(row['name'],row['type_of_business'],row['contact_details'], row['id'])
+        clients.append(client)
+    return clients
