@@ -1,9 +1,8 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <h1>Show assignment page</h1>
+    <h1>Assignment Details</h1>
         <div>
-            <h1>{{assignment.description}}</h1>
             <div>
                 <form action="/assignments/{{assignment.id}}/edit">
                     <input class="submit" type="submit" value="Edit Assignment">
@@ -15,21 +14,10 @@
             </div>
             <div>
                 <ul>
-                    {% for client in clients %}
+                    {% for assignment in assignments %}
                         <hr>
-                        <p>{{client.name}}</p>
-                        <p>{{client.type_of_business}}</p>
-                        <p>{{client.contact_details}}</p>
-                    {% endfor %}
-                </ul>
-            </div>
-            <div>
-                <ul>
-                    {% for consultant in consultants %}
-                    <hr>
-                        <p>{{consultant.name}}</p>
-                        <p>{{consultant.role}}</p>
-                        <p>{{consultant.day_rate}}</p>
+                        <h2>{{assignment.description}} for {{client.name}}</h2>
+                        <p></p>
                     {% endfor %}
                 </ul>
             </div>

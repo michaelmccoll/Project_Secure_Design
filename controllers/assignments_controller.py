@@ -39,12 +39,11 @@ def show_assignment(id):
     consultants = consultant_repository.consultants(assignment)
     return render_template("assignments/show.html",assignment=assignment,clients=clients,consultants=consultants)
 
-# Not sure if working yet. total_cost needs put in second last line.
 @assignments_blueprint.route("/assignments/<id>", methods=['POST'])
 def update_assignment(id):
     description = request.form["description"]
     consultant_id = request.form["consultant_id"]
-    consultant = consultant_repository.select(consultant_id)  # Problem here, consultant_id not recognised
+    consultant = consultant_repository.select(consultant_id)
     client_id = request.form["client_id"]
     client = client_repository.select(client_id)
     start_date = request.form["start_date"]

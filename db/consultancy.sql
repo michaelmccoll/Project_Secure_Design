@@ -1,6 +1,7 @@
 DROP TABLE IF EXISTS assignments;
 DROP TABLE IF EXISTS consultants;
 DROP TABLE IF EXISTS clients;
+DROP TABLE IF EXISTS admins;
 
 CREATE TABLE consultants (
   id SERIAL PRIMARY KEY,
@@ -27,3 +28,10 @@ CREATE TABLE assignments (
   end_date VARCHAR(255),
   total_cost INT
 );
+
+CREATE TABLE admins (
+  id SERIAL PRIMARY KEY,
+  name VARCHAR(30),
+  about_us TEXT,
+  email VARCHAR(30)
+)

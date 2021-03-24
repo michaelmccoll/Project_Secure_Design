@@ -2,6 +2,7 @@ import pdb
 from models.consultant import Consultant
 from models.client import Client
 from models.assignment import Assignment
+from models.admin import Admin
 
 import repositories.consultant_repository as consultant_repository
 import repositories.client_repository as client_repository

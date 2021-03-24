@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>Admin page</h1>
+        <div>
+            <table>
+                <tr>
+                    <th>Assignment for Client</th>
+                    <th>Days Required</th>
+                    <th>Total Cost</th>
+                </tr>
+                {% for assignment in assignments %}
+                <tr>
+                    <td>{{assignment.description}} for {{assignment.client.name}}</td>
+                    <td>{{assignment.days_required}}</td>
+                    <td>£{{assignment.total_cost}}</td>
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
+{% endblock %}
