@@ -22,5 +22,8 @@ CREATE TABLE assignments (
   description TEXT,
   consultant_id INT REFERENCES consultants(id) ON DELETE CASCADE,
   client_id INT REFERENCES clients(id) ON DELETE CASCADE,
-  days_required INT
+  days_required INT,
+  start_date VARCHAR(255),
+  end_date VARCHAR(255),
+  total_cost INT
 );

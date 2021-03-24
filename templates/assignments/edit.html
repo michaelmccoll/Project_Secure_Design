@@ -27,6 +27,14 @@
                 {% endfor %}
             </select>
 
+            <!-- Updating the dates may be the 'module not iterable' error message -->
+            <label for="start_date">Start Date: </label>
+            <input type="date" name="start_date" id="start_date" value="{{assignment.start_date}}">
+
+            <label for="end_date">End Date: </label>
+            <input type="date" name="end_date" id="end_date" value="{{assignment.end_date}}">
+            <!-- To here -->
+
             <label for="days_required">Days Required: </label>
             <input type="text" name="days_required" id="days_required" value="{{assignment.days_required}}">
 
