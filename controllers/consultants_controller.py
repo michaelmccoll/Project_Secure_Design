@@ -28,8 +28,8 @@ def create_consultant():
 def show_consultant(id):
     consultant = consultant_repository.select(id)
     clients = client_repository.clients(consultant)
-    # found_assignments = assignment_repository.assignments(consultant)
-    return render_template("consultants/show.html",consultant=consultant,clients=clients)
+    assignments = assignment_repository.assignments(consultant)
+    return render_template("consultants/show.html",consultant=consultant,clients=clients,assignments=assignments)
 
 @consultants_blueprint.route("/consultants/<id>/edit", methods=['GET'])
 def edit_consultant(id):

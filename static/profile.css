@@ -95,3 +95,13 @@
         "summary summary picture delete"
         "clients clients assignments assignments";
 }
+
+body > div > h3 {
+    display: flex;
+    align-items: center;
+}
+
+body > div > h2 {
+    display: flex;
+    align-items: center;
+}

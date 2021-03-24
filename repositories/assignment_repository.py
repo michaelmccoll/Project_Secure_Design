@@ -50,18 +50,19 @@ def update(assignment):
     run_sql(sql,values)
 
 # NEED Find assingments by the consultant ###
-# Find the clients by the consultant
-def clients(consultant):
+def assignments(consultant):
     values = [consultant.id]
     sql = f"""
-            SELECT clients.* FROM clients
+            SELECT assignments.* FROM assignments
             INNER JOIN assignments
-            ON clients.id = assignments.client_id
+            ON assessments.id = assignments.assignment_id
             WHERE consultant_id = %s
             """
     results = run_sql(sql,values)
-    clients = []
+    assignments = []
     for row in results:
-        client = Client(row['name'],row['type_of_business'],row['contact_details'], row['id'])
-        clients.append(client)
-    return clients
+        assignment = Assignment(row['description'],consultant,client,row['days_required'],row['start_date'], row['end_date'],row['total_cost'],row['id'])
+        assignments.append(assignment)
+    return assignments
+
+# lin2 62, may need to change assignments.assignment.id
