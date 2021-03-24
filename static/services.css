@@ -1,0 +1,65 @@
+.pic1 {
+    grid-area: pic1;
+    margin: 4px;
+    padding: 4px;
+    width: 250px;
+    height: 250px;
+    background-image: url(/static/img/wireframing.jpg);
+}
+
+.pic2 {
+    grid-area: pic2;
+    margin: 4px;
+    padding: 4px;
+    width: 250px;
+    height: 250px;
+    background-image:url(/static/img/mobile_app.jpg);
+}
+
+.pic3 {
+    grid-area: pic3;
+    margin: 4px;
+    padding: 4px;
+    width: 250px;
+    height: 250px;
+    background-image: url(/static/img/data_analytics.jpg);
+}
+
+.pic4 {
+    grid-area: pic4;
+    margin: 4px;
+    padding: 4px;
+    width: 250px;
+    height: 250px;
+    background-image: url(/static/img/IT_strategy.jpg);
+}
+.pic5 {
+    grid-area: pic5;
+    margin: 4px;
+    padding: 4px;
+    width: 250px;
+    height: 250px;
+    background-image: url(/static/img/coding.jpg);
+}
+.pic6 {
+    grid-area: pic6;
+    margin: 4px;
+    padding: 4px;
+    width: 250px;
+    height: 250px;
+    background-image: url(/static/img/coding_background.jpg);
+}
+
+.image {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: auto;
+    justify-content: center;
+    align-items: center;
+    margin: 15px;
+    padding: 15px;
+    grid-template-areas:
+        "pic1 pic2 pic3"
+        "pic4 pic5 pic6";
+}
+
