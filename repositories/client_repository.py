@@ -62,3 +62,12 @@ def update(client):
     sql = "UPDATE clients SET (name,type_of_business,contact_details) = (%s,%s,%s) WHERE id = %s"
     values = [client.name,client.type_of_business,client.contact_details,client.id]
     run_sql(sql,values)
+
+def total_client_spend():
+    sql = f"""
+            SELECT client_id, SUM(total_cost) FROM clients
+            INNER JOIN assignments ON clients.id = assignments.client_id
+            GROUP BY client_id
+            """
+    total_client_spend =run_sql(sql)
+    return total_client_spend

@@ -62,3 +62,17 @@ def update(consultant):
     sql = "UPDATE consultants SET (name,role,summary,day_rate) = (%s,%s,%s,%s) WHERE id = %s"
     values = [consultant.name,consultant.role,consultant.summary,consultant.day_rate,consultant.id]
     run_sql(sql,values)
+
+def total_days_assigned():
+    sql = "SELECT SUM(days_required) FROM consultants"
+    results = run_sql(sql)
+    return total_days_required
+
+def total_consultant_income():
+    sql = f"""
+            SELECT consultant_id, SUM(total_cost) FROM consultants
+            INNER JOIN assignments ON consultants.id = assignments.consultant_id
+            GROUP BY consultant_name
+            """
+    total_consultant_income =run_sql(sql)
+    return total_consultant_income

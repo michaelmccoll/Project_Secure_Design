@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>The Consultancy Stats</h1>
+    <div class="index">
+        <h4>
+            <table>
+                <tr>
+                    <th>Total Income</th>
+                </tr>
+                <tr>
+                    <td>£{{total_income}}</td>
+                </tr>
+            </table>
+        </h4>
+        <h4>
+            <table>
+                <tr>
+                    <th>Total Days Required</th>
+                </tr>
+                <tr>
+                    <td>{{total_days_required}}</td>
+                </tr>
+            </table>
+        </h4>
+        <h4>
+            <table>
+                <tr>
+                    <th>Client</th>
+                    <th>Total Spend</th>
+                </tr>
+                <tr>
+                    {% for assignment in assignments %}
+                    <tr>
+                        <td>{{assignment.client.name}}</td>
+                        <td>£{{total_client_spend[client_id]}}</td>
+                    </tr>
+                    {% endfor %}
+                </tr>
+            </table>
+        </h4>
+        <h4>
+            <table>
+                <tr>
+                    <th>Consultant</th>
+                    <th>Total Income</th>
+                </tr>
+                <tr>
+                    {% for assignment in assignments %}
+                    <tr>
+                        <td>{{assignment.consultant.name}}</td>
+                        <td>£{{total_consultant_income[0]}}</td>
+                    </tr>
+                    {% endfor %}
+                </tr>
+            </table>
+        </h4>
+    </div>
+{% endblock %}

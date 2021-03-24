@@ -49,20 +49,26 @@ def update(assignment):
     values = [assignment.description,assignment.consultant.id,assignment.client.id,assignment.days_required,assignment.start_date,assignment.end_date,assignment.total_cost,assignment.id]
     run_sql(sql,values)
 
-# NEED Find assingments by the consultant ###
 def assignments(consultant):
     values = [consultant.id]
     sql = f"""
-            SELECT assignments.* FROM assignments
-            INNER JOIN assignments
-            ON assessments.id = assignments.assignment_id
+            SELECT * FROM assignments
             WHERE consultant_id = %s
             """
     results = run_sql(sql,values)
     assignments = []
     for row in results:
+        client = client_repository.select_all()
         assignment = Assignment(row['description'],consultant,client,row['days_required'],row['start_date'], row['end_date'],row['total_cost'],row['id'])
         assignments.append(assignment)
     return assignments
 
-# lin2 62, may need to change assignments.assignment.id
+def total_income():
+    sql = "SELECT SUM(total_cost) FROM assignments"
+    total_income = run_sql(sql)[0]
+    return total_income[0]
+
+def total_days_required():
+    sql = "SELECT SUM(days_required) FROM assignments"
+    total_days_required = run_sql(sql)[0]
+    return total_days_required[0]

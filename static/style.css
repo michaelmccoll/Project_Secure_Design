@@ -21,6 +21,12 @@ h2 {
     color:#8b2fc9;
 }
 
+h4 {
+    padding: 10px;
+    margin: 10px 25px;
+    font-size: 20px;
+}
+
 body > a {
     padding: 10px;
     border-radius: 10px;
@@ -34,9 +40,3 @@ body > a {
     align-items: flex-end;
     min-width: fit-content;
 }
-
-/* Colour Scheme (via Coolers)
-F0EDEE - Isabelline
-074A88 - Yale Blue
-C5E1FC - Beau Blue
-DD5040 - Cinnabar */

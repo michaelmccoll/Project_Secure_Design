@@ -31,7 +31,6 @@ def create_assignment():
     assignment_repository.save(new_assignment)
     return redirect("/assignments")
 
-# Not sure of working yet
 @assignments_blueprint.route("/assignments/<id>")
 def show_assignment(id):
     assignment = assignment_repository.select(id)
@@ -49,8 +48,8 @@ def update_assignment(id):
     start_date = request.form["start_date"]
     end_date = request.form["end_date"]
     days_required = request.form["days_required"]
-    total_cost = 890
-    assignment = Assignment(description,consultant,client,days_required,start_date,end_date,total_cost,id)
+    calculate_costs = Assignment.calculate_costs(consultant.day_rate,days_required)
+    assignment = Assignment(description,consultant,client,days_required,start_date,end_date,calculate_costs,id)
     assignment_repository.update(assignment)
     return redirect("/assignments")
 

@@ -16,6 +16,7 @@ input {
     color: white;
     margin:12px 4px;
     width: 130px;
+    border-radius: 10px;
 }
 
 select {
