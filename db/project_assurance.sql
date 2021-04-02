@@ -1,8 +1,9 @@
-DROP TABLE IF EXISTS risk_assessments;
+DROP TABLE IF EXISTS categories;
 DROP TABLE IF EXISTS risks;
-DROP TABLE IF EXISTS control_assessments;
 DROP TABLE IF EXISTS controls;
-DROP TABLE IF EXISTS triages;
+DROP TABLE IF EXISTS triage;
+DROP TABLE IF EXISTS risk_reviews;
+DROP TABLE IF EXISTS control_reviews;
 DROP TABLE IF EXISTS projects;
 
 CREATE TABLE projects (
@@ -15,45 +16,43 @@ CREATE TABLE projects (
     status VARCHAR(25)
 );
 
-CREATE TABLE traiges (
+CREATE TABLE categories (
     id SERIAL PRIMARY KEY,
-    project_id INT REFERENCES projects(id) ON DELETE CASCADE,
-    question VARCHAR(100),
     category VARCHAR(25)
 );
 
-CREATE TABLE controls (
+CREATE TABLE traige (
     id SERIAL PRIMARY KEY,
-    title VARCHAR(50),
-    description VARCHAR(100),
-    category VARCHAR(25),
-    owner VARCHAR(50)
-);
-
-CREATE TABLE control_assessments (
-    id SERIAL PRIMARY KEY,
-    control_id INT REFERENCES controls(id) ON DELETE CASCADE,
-    design VARCHAR(25),
-    operating VARCHAR(25),
-    rating VARCHAR(25)
+    question VARCHAR(100)
 );
 
 CREATE TABLE risks (
     id SERIAL PRIMARY KEY,
     title VARCHAR(50),
     description VARCHAR(100),
-    category VARCHAR(25),
-    owner VARCHAR(50),
-    control_id INT REFERENCES controls(id) ON DELETE CASCADE
+    owner VARCHAR(50)
 );
 
-CREATE TABLE risk_assessments (
+CREATE TABLE controls (
     id SERIAL PRIMARY KEY,
-    risk_id INT REFERENCES risks(id) ON DELETE CASCADE,
+    title VARCHAR(50),
+    description VARCHAR(100),
+    owner VARCHAR(50)
+);
+
+CREATE TABLE control_reviews (
+    id SERIAL PRIMARY KEY,
+    design VARCHAR(25),
+    operating VARCHAR(25),
+    rating VARCHAR(25),
+    control_review_date VARCHAR(25)
+);
+
+CREATE TABLE risk_reviews (
+    id SERIAL PRIMARY KEY,
     inherrent_likelihood VARCHAR(25),
     inherrent_impact VARCHAR(25),
     residual_likelihood VARCHAR(25),
-    residual_impact VARCHAR(25)
+    residual_impact VARCHAR(25),
+    risk_review_date VARCHAR(25)
 );
-
-

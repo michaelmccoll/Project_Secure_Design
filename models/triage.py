@@ -1,5 +1,4 @@
 class Triage:
 
-    def __init__(self, question,category):
+    def __init__(self, question):
         self.question = question
-        self.category = category
