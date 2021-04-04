@@ -21,7 +21,7 @@ CREATE TABLE categories (
     category VARCHAR(25)
 );
 
-CREATE TABLE traige (
+CREATE TABLE triage (
     id SERIAL PRIMARY KEY,
     question VARCHAR(100)
 );
