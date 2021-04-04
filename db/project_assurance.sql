@@ -23,21 +23,28 @@ CREATE TABLE categories (
 
 CREATE TABLE triage (
     id SERIAL PRIMARY KEY,
-    question VARCHAR(100)
+    question VARCHAR(100),
+    project_id INT REFERENCES projects(id) ON DELETE CASCADE,
+    category_id INT REFERENCES categories(id) ON DELETE CASCADE,
+    date VARCHAR(25)
 );
 
 CREATE TABLE risks (
     id SERIAL PRIMARY KEY,
     title VARCHAR(50),
     description VARCHAR(100),
-    owner VARCHAR(50)
+    owner VARCHAR(50),
+    triage_id INT REFERENCES triage(id) ON DELETE CASCADE,
+    category_id INT REFERENCES categories(id) ON DELETE CASCADE
 );
 
 CREATE TABLE controls (
     id SERIAL PRIMARY KEY,
     title VARCHAR(50),
     description VARCHAR(100),
-    owner VARCHAR(50)
+    owner VARCHAR(50),
+    risk_id INT REFERENCES risks(id) ON DELETE CASCADE,
+    category_id INT REFERENCES categories(id) ON DELETE CASCADE
 );
 
 CREATE TABLE control_reviews (
@@ -45,7 +52,8 @@ CREATE TABLE control_reviews (
     design VARCHAR(25),
     operating VARCHAR(25),
     rating VARCHAR(25),
-    control_review_date VARCHAR(25)
+    date VARCHAR(25),
+    control_id INT REFERENCES controls(id) ON DELETE CASCADE
 );
 
 CREATE TABLE risk_reviews (
@@ -54,5 +62,6 @@ CREATE TABLE risk_reviews (
     inherrent_impact VARCHAR(25),
     residual_likelihood VARCHAR(25),
     residual_impact VARCHAR(25),
-    risk_review_date VARCHAR(25)
+    date VARCHAR(25),
+    risk_id INT REFERENCES risks(id) ON DELETE CASCADE
 );
