@@ -1,6 +1,6 @@
 from flask import Flask, render_template, request, redirect
 from flask import Blueprint
-from repositories import project_repository, triage_repository, risk_repository, control_repository
+from repositories import project_repository, triage_repository, risk_repository, control_repository, category_repository
 from models.project import Project
 
 projects_blueprint = Blueprint("projects",__name__)
@@ -12,15 +12,17 @@ def projects():
 
 @projects_blueprint.route("/projects/new")
 def new_project():
-    return render_template("projects/new.html")
+    return render_template("/projects/new.html")
 
 @projects_blueprint.route("/projects", methods=['POST'])
 def create_project():
-    name = request.form["name"]
-    role = request.form["role"]
-    summary = request.form["summary"]
-    day_rate = request.form["day_rate"]
-    new_project = Project(name,role,summary,day_rate)
+    title = request.form["title"]
+    sponsor = request.form["sponsor"]
+    project_manager = request.form["project_manager"]
+    start_date = request.form["start_date"]
+    end_date = request.form["end_date"]
+    status = request.form["status"]
+    new_project = Project(title,sponsor,project_manager,start_date,end_date,status)
     project_repository.save(new_project)
     return redirect("/projects")
 
@@ -30,7 +32,7 @@ def show_project(id):
     triage = triage_repository.triage(project)
     risks = risk_repository.risks(project)
     controls = control_repository.controls(project)
-    return render_template("projects/show.html",project=project,triage=triage,risks=risks,controls=controls)
+    return render_template("/projects/show.html",project=project,triage=triage,risks=risks,controls=controls)
 
 @projects_blueprint.route("/projects/<id>/edit", methods=['GET'])
 def edit_project(id):
@@ -39,11 +41,13 @@ def edit_project(id):
 
 @projects_blueprint.route("/projects/<id>", methods=['POST'])
 def update_project(id):
-    name = request.form["name"]
-    role = request.form["role"]
-    summary = request.form["summary"]
-    day_rate = request.form["day_rate"]
-    project = Project(name,role,summary,day_rate,id)
+    title = request.form["title"]
+    sponsor = request.form["sponsor"]
+    project_manager = request.form["project_manager"]
+    start_date = request.form["start_date"]
+    end_date = request.form["end_date"]
+    status = request.form["status"]
+    project = Project(title,sponsor,project_manager,start_date,end_date,status,id)
     project_repository.update(project)
     return redirect("/projects")
 

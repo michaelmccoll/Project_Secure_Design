@@ -3,10 +3,9 @@
 {% block content %}
     <h1>Show project page</h1>
     <div class="profile">
-        <h2 class="name">{{project.name}}</h2>
-        <h3 class="role">{{project.role}}</h3>
-        <h3 class="summary">{{project.summary}}</h3>
-        <h3 class="day_rate">£{{project.day_rate}}</h3>
+        <h2 class="title">{{project.title}}</h2>
+        <h3 class="sponsor">{{project.sponsor}}</h3>
+        <h3 class="status">{{project.status}}</h3>
 
         <div class="picture">
             <img src="/static/profiles/mmccoll.jpeg" alt="">
@@ -28,7 +27,7 @@
                 <h3>triages:</h3>
                 {% for triage in triages %}
                     <div>
-                        <p>{{triage.name}}</p>
+                        <p>{{triage.question}}</p>
                     </div> 
                 {% endfor %}
             </ul>
@@ -39,7 +38,7 @@
                 <h3>risks:</h3>
                 {% for risk in risks %}
                     <div>
-                        <p>{{risk.description}}</p>
+                        <p>{{risk.title}}</p>
                     </div>
                 {% endfor %}
             </ul>

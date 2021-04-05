@@ -1,8 +1,16 @@
 from db.run_sql import run_sql
 
 from models.project import Project
+from models.triage import Triage
+from models.risk import Risk
+from models.control import Control
+from models.categories import Category
 
-# import repositories.risk_repository as risk_repository
+import repositories.project_repository as project_repository
+import repositories.triage_repository as triage_repository
+import repositories.risk_repository as risk_repository
+import repositories.control_repository as control_repository
+import repositories.category_repository as category_repository
 
 def save(categories):
     sql = "INSERT INTO categories(category) VALUES (%s) RETURNING id"
@@ -11,25 +19,25 @@ def save(categories):
     categories.id = results[0]['id']
     return categories
 
-# def select_all():
-#     categoriess = []
-#     sql = "SELECT * FROM categories"
-#     results = run_sql(sql)
+def select_all():
+    categories = []
+    sql = "SELECT * FROM categories"
+    results = run_sql(sql)
 
-#     for row in results:
-#         categories = categories(row['question'],row['id'])
-#         categoriess.append(categories)
-#     return categoriess
+    for row in results:
+        categories = Category(row['category'],row['id'])
+        categories.append(categories)
+    return categories
 
-# def select(id):
-#     categories = None
-#     sql = "SELECT * FROM categories WHERE id = %s"
-#     values = [id]
-#     result = run_sql(sql,values)[0]
+def select(id):
+    categories = None
+    sql = "SELECT * FROM categories WHERE id = %s"
+    values = [id]
+    result = run_sql(sql,values)[0]
 
-#     if result is not None:
-#         categories = categories(row['question'],row['id'])
-#     return categories
+    if result is not None:
+        categories = Category(result['category'],result['id'])
+    return categories
 
 # def delete_all():
 #     sql = "DELETE FROM categories"

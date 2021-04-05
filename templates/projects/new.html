@@ -4,20 +4,25 @@
     <h1>Create a new project</h1>
         <form action="/projects" method="POST">
             <div>
-                <label for="name">Project Name: </label>
-                <input type="text" name="name" id="name">
+                <label for="title">Project Title: </label>
+                <input type="text" name="title" id="title">
 
-                <label for="role">Role: </label>
-                <input type="text" name="role" id="role">
+                <label for="sponsor">Sponsor: </label>
+                <input type="text" name="sponsor" id="sponsor">
+        
+                <label for="project_manager">Project Manager: </label>
+                <input type="text" name="project_manager" id="project_manager">
 
-                <label for="summary">Summary: </label>
-                <input type="text" name="summary" id="summary">
+                <label for="start_date">Start Date: </label>
+                <input type="text" name="start_date" id="start_date">
 
-                <label for="day_rate">Day Rate: </label>
-                <input type="int" name="day_rate" id="day_rate">
+                <label for="end_date">End Date: </label>
+                <input type="text" name="end_date" id="end_date">
+        
+                <label for="status">Day Rate: </label>
+                <input type="text" name="status" id="status">
 
                 <input class="submit" type="submit">
-
             </div>
         
         </form>

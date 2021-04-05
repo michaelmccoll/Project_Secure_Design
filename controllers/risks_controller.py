@@ -1,6 +1,6 @@
 from flask import Flask, render_template, request, redirect
 from flask import Blueprint
-from repositories import project_repository, triage_repository, risk_repository, control_repository
+from repositories import project_repository, triage_repository, risk_repository, control_repository, category_repository
 from models.risk import Risk
 
 risks_blueprint = Blueprint("risks",__name__)
@@ -8,7 +8,7 @@ risks_blueprint = Blueprint("risks",__name__)
 @risks_blueprint.route('/risks')
 def risks():
     risks = risk_repository.select_all()
-    return render_template("risks/index.html", all_risks=risks)
+    return render_template("/risks/index.html", all_risks=risks)
 
 @risks_blueprint.route("/risks/new")
 def new_risk():
@@ -36,7 +36,7 @@ def show_risk(id):
     risk = risk_repository.select(id)
     triages = triage_repository.triages(risk)
     projects = project_repository.projects(risk)
-    return render_template("risks/show.html",risk=risk,triages=triages,projects=projects)
+    return render_template("/risks/show.html",risk=risk,triages=triages,projects=projects)
 
 @risks_blueprint.route("/risks/<id>", methods=['POST'])
 def update_risk(id):

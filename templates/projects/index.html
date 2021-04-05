@@ -1,15 +1,18 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <h1>Our List of projects</h1>
+    <h1>List of projects</h1>
     <a href="/projects/new">Create new project</a>
     <div class="index">
         {% for project in all_projects %}
             <div>
                 <hr>
-                <h2><b>project: {{project.name}}</b></h2>
-                <p><b>Role: </b>{{project.role}}</p>
-                <p><b>Summary: </b>{{project.summary}}</p>
+                <h2><b>Project Title: {{project.title}}</b></h2>
+                <p><b>Sponsor: </b>{{project.sponsor}}</p>
+                <p><b>Project Manager: </b>{{project.project_manager}}</p>
+                <p><b>Start Date: </b>{{project.start_date}}</p>
+                <p><b>End Date: </b>{{project.end_date}}</p>
+                <p><b>Status: </b>{{project.status}}</p>
                 <a href="/projects/{{project.id}}">More Details</a>
             </div>
         {% endfor %}

@@ -4,10 +4,13 @@ from models.project import Project
 from models.triage import Triage
 from models.risk import Risk
 from models.control import Control
+from models.categories import Category
 
+import repositories.project_repository as project_repository
 import repositories.triage_repository as triage_repository
 import repositories.risk_repository as risk_repository
 import repositories.control_repository as control_repository
+import repositories.category_repository as category_repository
 
 def save(risk):
     sql = "INSERT INTO risks(title,description,owner,triage_id,category_id) VALUES (%s,%s,%s,%s,%s) RETURNING id"
@@ -24,7 +27,7 @@ def select_all():
     for row in results:
         triage = triage_repository.select(row['triage_id'])
         category = category_repository.select(row['category_id'])
-        risk = Risk(row['title'],row['description'],row['owner'],row['id'],triage,category)
+        risk = Risk(row['title'],row['description'],row['owner'],triage,category,row['id'])
         risks.append(risk)
     return risks
 
@@ -33,11 +36,11 @@ def select(id):
     sql = "SELECT * FROM risks WHERE id = %s"
     values = [id]
     result = run_sql(sql,values)[0]
-    triage = triage_repository.select(row['triage_id'])
-    category = category_repository.select(row['category_id'])
+    triage = triage_repository.select(result['triage_id'])
+    category = category_repository.select(result['category_id'])
 
     if result is not None:
-        risk = Risk(row['title'],row['description'],row['owner'],row['id'],triage,category)
+        risk = Risk(result['title'],result['description'],result['owner'],triage,category,result['id'])
     return risk
 
 def delete_all():

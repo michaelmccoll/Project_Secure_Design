@@ -1,6 +1,6 @@
 from flask import Flask, render_template, request, redirect
 from flask import Blueprint
-from repositories import project_repository, triage_repository, risk_repository, control_repository
+from repositories import project_repository, triage_repository, risk_repository, control_repository, category_repository
 from models.triage import Triage
 
 triages_blueprint = Blueprint("triages",__name__)
@@ -8,7 +8,7 @@ triages_blueprint = Blueprint("triages",__name__)
 @triages_blueprint.route("/triages")
 def triages():
     triages = triage_repository.select_all()
-    return render_template("triages/index.html", all_triages=triages)
+    return render_template("/triages/index.html", all_triages=triages)
 
 @triages_blueprint.route("/triages/new")
 def new_triage():
@@ -28,7 +28,7 @@ def show_triage(id):
     triage = triage_repository.select(id)
     projects = project_repository.projects(triage)
     risks = risk_repository.risks(triage)
-    return render_template("triages/show.html",triage=triage,projects=projects,risks=risks)
+    return render_template("/triages/show.html",triage=triage,projects=projects,risks=risks)
 
 @triages_blueprint.route("/triages/<id>/edit", methods=['GET'])
 def edit_triage(id):

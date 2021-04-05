@@ -4,10 +4,13 @@ from models.project import Project
 from models.triage import Triage
 from models.risk import Risk
 from models.control import Control
+from models.categories import Category
 
+import repositories.project_repository as project_repository
 import repositories.triage_repository as triage_repository
 import repositories.risk_repository as risk_repository
 import repositories.control_repository as control_repository
+import repositories.category_repository as category_repository
 
 def save(project):
     sql = "INSERT INTO projects(title,sponsor,project_manager,start_date,end_date,status) VALUES (%s,%s,%s,%s,%s,%s) RETURNING id"
@@ -33,7 +36,7 @@ def select(id):
     result = run_sql(sql,values)[0]
 
     if result is not None:
-        project = Project(row['title'],row['sponsor'],row['project_manager'],row['start_date'],row['end_date'],row['status'],row['id'])
+        project = Project(result['title'],result['sponsor'],result['project_manager'],result['start_date'],result['end_date'],result['status'],result['id'])
     return project
 
 def delete_all():
@@ -46,7 +49,7 @@ def delete(id):
     run_sql(sql,values)
 
 def update(project):
-    sql = "UPDATE projects SET (name,type_of_business,contact_details) = (%s,%s,%s) WHERE id = %s"
+    sql = "UPDATE projects SET (title,sponsor,project_manager,start_date,end_date,status) = (%s,%s,%s,%s,%s,%s) WHERE id = %s"
     values = [project.title,project.sponsor,project.project_manager,project.start_date,project.end_date,project.status]
     run_sql(sql,values)
 

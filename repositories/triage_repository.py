@@ -6,6 +6,7 @@ from models.risk import Risk
 from models.control import Control
 from models.categories import Category
 
+import repositories.project_repository as project_repository
 import repositories.triage_repository as triage_repository
 import repositories.risk_repository as risk_repository
 import repositories.control_repository as control_repository
@@ -35,11 +36,11 @@ def select(id):
     sql = "SELECT * FROM triage WHERE id = %s"
     values = [id]
     result = run_sql(sql,values)[0]
-    project = project_repository.select(row['project_id'])
-    category = category_repository.select(row['category_id'])
+    project = project_repository.select(result['project_id'])
+    category = category_repository.select(result['category_id'])
 
     if result is not None:
-        triage = Triage(row['question'],project,category,row['id'])
+        triage = Triage(result['question'],project,category,result['id'])
     return triage
 
 def delete_all():
@@ -56,21 +57,23 @@ def update(triage):
     values = [triage.question,triage.project.id,triage.category.id,triage.date]
     run_sql(sql,values)
 
-# Find the triage by the consultant = xxx???
-# def triage(consultant):
-#     values = [consultant.id]
-#     sql = f"""
-#             SELECT triage.* FROM triage
-#             INNER JOIN assignments
-#             ON triage.id = assignments.triage_id
-#             WHERE consultant_id = %s
-#             """
-#     results = run_sql(sql,values)
-#     triage = []
-#     for row in results:
-#         triage = triage(row['title'],row['sponsor'],row['triage_manager'],row['start_date'],row['end_date'],row['status'],row['id'])
-#         triage.append(triage)
-#     return triage
+# Find the triage by the project
+def triage(project):
+    values = [project.id]
+    sql = f"""
+            SELECT triage.* FROM triage
+            INNER JOIN assignments
+            ON triage.id = assignments.triage_id
+            WHERE project_id = %s
+            """
+    results = run_sql(sql,values)
+    triage = []
+    for row in results:
+        category = category_repository.select_all()
+        triage = Triage(row['question'],project,category,row['date'],row['id'])
+        triage.append(triage)
+    return triage
+
 # ----------------------------------------------
 # def total_triage_spend():
 #     sql = f"""

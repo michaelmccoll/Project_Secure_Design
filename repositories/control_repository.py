@@ -4,10 +4,13 @@ from models.project import Project
 from models.triage import Triage
 from models.risk import Risk
 from models.control import Control
+from models.categories import Category
 
-import repositories.triage_repository as triage_repository
-import repositories.control_repository as control_repository
 import repositories.project_repository as project_repository
+import repositories.triage_repository as triage_repository
+import repositories.risk_repository as risk_repository
+import repositories.control_repository as control_repository
+import repositories.category_repository as category_repository
 
 def save(control):
     sql = "INSERT INTO controls(title,description,owner,risk_id,category_id) VALUES (%s,%s,%s,%s,%s) RETURNING id"
@@ -24,7 +27,7 @@ def select_all():
     for row in results:
         risk = risk_repository.select(row['risk_id'])
         category = category_repository.select(row['category_id'])
-        control = Control(row['title'],row['description'],row['owner'],row['id'],risk,category)
+        control = Control(row['title'],row['description'],row['owner'],risk,category,row['id'])
         controls.append(control)
     return controls
 
@@ -33,11 +36,11 @@ def select(id):
     sql = "SELECT * FROM controls WHERE id = %s"
     values = [id]
     result = run_sql(sql,values)[0]
-    risk = risk_repository.select(row['risk_id'])
-    category = category_repository.select(row['category_id'])
+    risk = risk_repository.select(result['risk_id'])
+    category = category_repository.select(result['category_id'])
 
     if result is not None:
-        control = Control(row['title'],row['description'],row['owner'],row['id'],risk,category)
+        control = Control(result['title'],result['description'],result['owner'],risk,category,result['id'])
     return control
 
 def delete_all():
