@@ -10,8 +10,8 @@ import repositories.control_repository as control_repository
 import repositories.project_repository as project_repository
 
 def save(control):
-    sql = "INSERT INTO controls(title,description,owner) VALUES (%s,%s,%s) RETURNING id"
-    values = [control.title,control.description,control.owner]
+    sql = "INSERT INTO controls(title,description,owner,risk_id,category_id) VALUES (%s,%s,%s,%s,%s) RETURNING id"
+    values = [control.title,control.description,control.owner,control.risk.id,control.category.id]
     results = run_sql(sql,values)
     control.id = results[0]['id']
     return control
@@ -22,7 +22,9 @@ def select_all():
     results = run_sql(sql)
 
     for row in results:
-        control = Control(row['title'],row['description'],row['owner'],row['id'])
+        risk = risk_repository.select(row['risk_id'])
+        category = category_repository.select(row['category_id'])
+        control = Control(row['title'],row['description'],row['owner'],row['id'],risk,category)
         controls.append(control)
     return controls
 
@@ -31,9 +33,11 @@ def select(id):
     sql = "SELECT * FROM controls WHERE id = %s"
     values = [id]
     result = run_sql(sql,values)[0]
+    risk = risk_repository.select(row['risk_id'])
+    category = category_repository.select(row['category_id'])
 
     if result is not None:
-        control = Control(row['title'],row['description'],row['owner'],row['id'])
+        control = Control(row['title'],row['description'],row['owner'],row['id'],risk,category)
     return control
 
 def delete_all():
@@ -46,8 +50,8 @@ def delete(id):
     run_sql(sql,values)
 
 def update(control):
-    sql = "UPDATE controls SET (title,description,owner) = (%s,%s,%s) WHERE id = %s"
-    values = [control.title,control.description,control.owner]
+    sql = "UPDATE controls SET (title,description,owner,risk_id,category_id) = (%s,%s,%s,%s,%s) WHERE id = %s"
+    values = [control.title,control.description,control.owner,control.risk.id,control.category.id]
     run_sql(sql,values)
 
 # Find the controls by the consultant = xxx???

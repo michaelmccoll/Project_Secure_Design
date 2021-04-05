@@ -1,26 +1,26 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <h1>Create a new assignment</h1>
-        <form action="/assignments" method="POST">
+    <h1>Create a new risk</h1>
+        <form action="/risks" method="POST">
             <div>
-                <label for="description">Assignment Description: </label>
+                <label for="description">risk Description: </label>
                 <input type="text" name="description" id="description">
 
-                <label for="consultant_id">Consultant Name: </label>
-                <select name="consultant_id" id="consultant_id">
-                    {% for consultant in all_consultants %}
-                    <option value="{{consultant.id}}">
-                        {{consultant.name}}
+                <label for="project_id">project Name: </label>
+                <select name="project_id" id="project_id">
+                    {% for project in all_projects %}
+                    <option value="{{project.id}}">
+                        {{project.name}}
                     </option>
                     {% endfor %}
                 </select>
 
-                <label for="client_id">Client Name: </label>
-                <select name="client_id" id="client_id">
-                    {% for client in all_clients %}
-                    <option value="{{client.id}}">
-                        {{client.name}}
+                <label for="triage_id">triage Name: </label>
+                <select name="triage_id" id="triage_id">
+                    {% for triage in all_triages %}
+                    <option value="{{triage.id}}">
+                        {{triage.name}}
                     </option>
                     {% endfor %}
                 </select>

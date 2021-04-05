@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>Show project page</h1>
+    <div class="profile">
+        <h2 class="name">{{project.name}}</h2>
+        <h3 class="role">{{project.role}}</h3>
+        <h3 class="summary">{{project.summary}}</h3>
+        <h3 class="day_rate">£{{project.day_rate}}</h3>
+
+        <div class="picture">
+            <img src="/static/profiles/mmccoll.jpeg" alt="">
+        </div>
+
+        <div class="update">
+            <form action="/projects/{{project.id}}/edit">
+                <input class="submit" type="submit" value="Edit project">
+            </form>
+        </div>
+        <div class="delete">
+            <form action="/projects/{{project.id}}/delete" method="POST">
+                <input class="submit" type="submit" value="Delete project">
+            </form>
+        </div>
+
+        <div class="triages">
+            <ul>
+                <h3>triages:</h3>
+                {% for triage in triages %}
+                    <div>
+                        <p>{{triage.name}}</p>
+                    </div> 
+                {% endfor %}
+            </ul>
+        </div>
+
+        <div class="risks">
+            <ul>
+                <h3>risks:</h3>
+                {% for risk in risks %}
+                    <div>
+                        <p>{{risk.description}}</p>
+                    </div>
+                {% endfor %}
+            </ul>
+        </div>
+
+    </div>
+{% endblock %}

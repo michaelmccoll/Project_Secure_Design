@@ -18,7 +18,7 @@ CREATE TABLE projects (
 
 CREATE TABLE categories (
     id SERIAL PRIMARY KEY,
-    category VARCHAR(25)
+    category VARCHAR(50)
 );
 
 CREATE TABLE triage (

@@ -1,17 +1,17 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <h1>Edit assignment page</h1>
-    <form action="/assignments/{{assignment.id}}" method="POST">
+    <h1>Edit risk page</h1>
+    <form action="/risks/{{risk.id}}" method="POST">
         <div>
-            <label for="description">Assignment Description: </label>
-            <input type="text" name="description" id="description" value="{{assignment.description}}">
+            <label for="description">Risk Description: </label>
+            <input type="text" name="description" id="description" value="{{risk.description}}">
 
             <label for="consultant_id">Consultant Name: </label>
             <select name="consultant_id" id="consultant_id">
                 {% for consultant in consultants %}
                 <option value="{{consultant.id}}"
-                    {% if assignment.consultant.id == consultant.id %} selected="selected" {% endif %}>
+                    {% if risk.consultant.id == consultant.id %} selected="selected" {% endif %}>
                     {{consultant.name}}
                 </option>
                 {% endfor %}
@@ -21,7 +21,7 @@
             <select name="client_id" id="client_id">
                 {% for client in clients %}
                 <option value="{{client.id}}"
-                    {% if assignment.client.id == client.id %} selected="selected" {% endif %}>
+                    {% if risk.client.id == client.id %} selected="selected" {% endif %}>
                     {{client.name}}
                 </option>
                 {% endfor %}
@@ -29,14 +29,14 @@
 
             <!-- Updating the dates may be the 'module not iterable' error message -->
             <label for="start_date">Start Date: </label>
-            <input type="date" name="start_date" id="start_date" value="{{assignment.start_date}}">
+            <input type="date" name="start_date" id="start_date" value="{{risk.start_date}}">
 
             <label for="end_date">End Date: </label>
-            <input type="date" name="end_date" id="end_date" value="{{assignment.end_date}}">
+            <input type="date" name="end_date" id="end_date" value="{{risk.end_date}}">
             <!-- To here -->
 
             <label for="days_required">Days Required: </label>
-            <input type="text" name="days_required" id="days_required" value="{{assignment.days_required}}">
+            <input type="text" name="days_required" id="days_required" value="{{risk.days_required}}">
 
             <input class="submit" type="submit">
         </div>

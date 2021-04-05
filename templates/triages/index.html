@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>Our List of triages</h1>
+    <a href="/triages/new">Create new triage</a>
+    <div class="index">
+        {% for triage in all_triages %}
+        <div>
+            <hr>
+            <h2><b>triage: {{triage.name}}</b></h2>
+            <p><b>Type of Business: </b>{{triage.type_of_business}}</p>
+            <p><b>Contact Details: </b>{{triage.contact_details}}</p>
+            <a href="/triages/{{triage.id}}">Consultants Assigned</a>
+        </div>
+        {% endfor %}
+    </div>
+{% endblock %}

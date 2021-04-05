@@ -5,8 +5,8 @@ from models.project import Project
 # import repositories.risk_repository as risk_repository
 
 def save(categories):
-    sql = "INSERT INTO categories(question) VALUES (%s) RETURNING id"
-    values = [categories.question]
+    sql = "INSERT INTO categories(category) VALUES (%s) RETURNING id"
+    values = [categories.category]
     results = run_sql(sql,values)
     categories.id = results[0]['id']
     return categories

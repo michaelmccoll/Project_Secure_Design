@@ -4,14 +4,16 @@ from models.project import Project
 from models.triage import Triage
 from models.risk import Risk
 from models.control import Control
+from models.categories import Category
 
 import repositories.triage_repository as triage_repository
 import repositories.risk_repository as risk_repository
 import repositories.control_repository as control_repository
+import repositories.category_repository as category_repository
 
 def save(triage):
-    sql = "INSERT INTO triage(question) VALUES (%s) RETURNING id"
-    values = [triage.question]
+    sql = "INSERT INTO triage(question,project_id,category_id,date) VALUES (%s,%s,%s,%s) RETURNING id"
+    values = [triage.question,triage.project.id,triage.category.id,triage.date]
     results = run_sql(sql,values)
     triage.id = results[0]['id']
     return triage
@@ -22,7 +24,9 @@ def select_all():
     results = run_sql(sql)
 
     for row in results:
-        triage = Triage(row['question'],row['id'])
+        project = project_repository.select(row['project_id'])
+        category = category_repository.select(row['category_id'])
+        triage = Triage(row['question'],project,category,row['id'])
         triages.append(triage)
     return triages
 
@@ -31,9 +35,11 @@ def select(id):
     sql = "SELECT * FROM triage WHERE id = %s"
     values = [id]
     result = run_sql(sql,values)[0]
+    project = project_repository.select(row['project_id'])
+    category = category_repository.select(row['category_id'])
 
     if result is not None:
-        triage = Triage(row['question'],row['id'])
+        triage = Triage(row['question'],project,category,row['id'])
     return triage
 
 def delete_all():
@@ -46,8 +52,8 @@ def delete(id):
     run_sql(sql,values)
 
 def update(triage):
-    sql = "UPDATE triage SET (question) = (%s) WHERE id = %s"
-    values = [triage.question]
+    sql = "UPDATE triage SET (question,project_id,category_id,date) = (%s,%s,%s,%s) WHERE id = %s"
+    values = [triage.question,triage.project.id,triage.category.id,triage.date]
     run_sql(sql,values)
 
 # Find the triage by the consultant = xxx???

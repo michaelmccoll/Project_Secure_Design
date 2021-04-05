@@ -1,4 +1,4 @@
 class Category:
 
-    def __init__(self,categories):
-        self.categories = categories
+    def __init__(self,category):
+        self.category = category

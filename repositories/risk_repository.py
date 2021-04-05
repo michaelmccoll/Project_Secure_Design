@@ -10,8 +10,8 @@ import repositories.risk_repository as risk_repository
 import repositories.control_repository as control_repository
 
 def save(risk):
-    sql = "INSERT INTO risks(title,description,owner) VALUES (%s,%s,%s) RETURNING id"
-    values = [risk.title,risk.description,risk.owner]
+    sql = "INSERT INTO risks(title,description,owner,triage_id,category_id) VALUES (%s,%s,%s,%s,%s) RETURNING id"
+    values = [risk.title,risk.description,risk.owner,risk.triage.id,risk.category.id]
     results = run_sql(sql,values)
     risk.id = results[0]['id']
     return risk
@@ -22,7 +22,9 @@ def select_all():
     results = run_sql(sql)
 
     for row in results:
-        risk = Risk(row['title'],row['description'],row['owner'],row['id'])
+        triage = triage_repository.select(row['triage_id'])
+        category = category_repository.select(row['category_id'])
+        risk = Risk(row['title'],row['description'],row['owner'],row['id'],triage,category)
         risks.append(risk)
     return risks
 
@@ -31,9 +33,11 @@ def select(id):
     sql = "SELECT * FROM risks WHERE id = %s"
     values = [id]
     result = run_sql(sql,values)[0]
+    triage = triage_repository.select(row['triage_id'])
+    category = category_repository.select(row['category_id'])
 
     if result is not None:
-        risk = Risk(row['title'],row['description'],row['owner'],row['id'])
+        risk = Risk(row['title'],row['description'],row['owner'],row['id'],triage,category)
     return risk
 
 def delete_all():
@@ -46,8 +50,8 @@ def delete(id):
     run_sql(sql,values)
 
 def update(risk):
-    sql = "UPDATE risks SET (title,description,owner) = (%s,%s,%s) WHERE id = %s"
-    values = [risk.title,risk.description,risk.owner]
+    sql = "UPDATE risks SET (title,description,owner,triage_id,category_id) = (%s,%s,%s) WHERE id = %s"
+    values = [risk.title,risk.description,risk.owner,risk.triage.id,risk.category.id]
     run_sql(sql,values)
 
 # Find the risks by the consultant = xxx???

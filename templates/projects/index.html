@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>Our List of projects</h1>
+    <a href="/projects/new">Create new project</a>
+    <div class="index">
+        {% for project in all_projects %}
+            <div>
+                <hr>
+                <h2><b>project: {{project.name}}</b></h2>
+                <p><b>Role: </b>{{project.role}}</p>
+                <p><b>Summary: </b>{{project.summary}}</p>
+                <a href="/projects/{{project.id}}">More Details</a>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}

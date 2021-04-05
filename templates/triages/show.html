@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>Show triage page</h1>
+    <div>
+        <h1>{{triage.name}}</h1>
+        <div>
+            <form action="/triages/{{triage.id}}/edit">
+                <input class="submit" type="submit" value="Edit triage">
+            </form>
+
+            <form action="/triages/{{triage.id}}/delete" method="POST">
+                <input class="submit" type="submit" value="Delete triage">
+            </form>
+        </div>
+            <ul>
+                <h2>projects Assigned:</h2>
+                {% for project in projects %}
+                <hr>
+                <p>project:  {{project.name}}</p>
+                <p>Role:  {{project.role}}</p>
+                <p>Day Rate:  £{{project.day_rate}}</p>
+                {% endfor %}
+            </ul>
+    </div>
+{% endblock %}

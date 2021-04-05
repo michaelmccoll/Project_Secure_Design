@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>Edit risk</h1>
+        <div class="index">
+            <div>
+                <form action="/risks/{{risk.id}}/edit">
+                    <input class="submit" type="submit" value="Edit risk">
+                </form>
+
+                <form action="/risks/{{risk.id}}/delete" method="POST">
+                    <input class="submit" type="submit" value="Delete risk">
+                </form>
+            </div>
+        </div>
+{% endblock %}
