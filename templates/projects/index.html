@@ -3,18 +3,31 @@
 {% block content %}
     <h1>List of projects</h1>
     <a href="/projects/new">Create new project</a>
-    <div class="index">
+    <hr>
+    <table class="table">
+            <thead>
+                <tr>
+                    <th>Project Title</th>
+                    <th>Sponsor</th>
+                    <th>Project Manager</th>
+                    <th>Start Date</th>
+                    <th>End Date</th>
+                    <th>Status</th>
+                    <th>More Info</th>
+                </tr>
+            </thead>
         {% for project in all_projects %}
-            <div>
-                <hr>
-                <h2><b>Project Title: {{project.title}}</b></h2>
-                <p><b>Sponsor: </b>{{project.sponsor}}</p>
-                <p><b>Project Manager: </b>{{project.project_manager}}</p>
-                <p><b>Start Date: </b>{{project.start_date}}</p>
-                <p><b>End Date: </b>{{project.end_date}}</p>
-                <p><b>Status: </b>{{project.status}}</p>
-                <a href="/projects/{{project.id}}">More Details</a>
-            </div>
+            <tbody>
+                <tr>
+                    <td><b>{{project.title}}</b></td>
+                    <td><b>{{project.sponsor}}</td>
+                    <td>{{project.project_manager}}</td>
+                    <td>{{project.start_date}}</td>
+                    <td>{{project.end_date}}</td>
+                    <td>{{project.status}}</td>
+                    <td><a href="/projects/{{project.id}}">More Details</a></td>
+                </tr>
+            </tbody>
         {% endfor %}
-    </div>
+        </table>
 {% endblock %}

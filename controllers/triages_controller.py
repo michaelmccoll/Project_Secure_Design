@@ -1,6 +1,6 @@
 from flask import Flask, render_template, request, redirect
 from flask import Blueprint
-from repositories import project_repository, triage_repository, risk_repository, control_repository, category_repository
+from repositories import project_repository, triage_repository, risk_repository, control_repository
 from models.triage import Triage
 
 triages_blueprint = Blueprint("triages",__name__)
@@ -16,10 +16,17 @@ def new_triage():
 
 @triages_blueprint.route("/triages", methods=['POST'])
 def create_triage():
-    name = request.form["name"]
-    type_of_business = request.form["type_of_business"]
-    contact_details = request.form["contact_details"]
-    new_triage = Triage(name,type_of_business,contact_details)
+    project = project_repository.select(project_id)
+    iam = request.form["iam"]
+    infrastructure = request.form["infrastructure"]
+    supplier = request.form["supplier"]
+    privacy = request.form["privacy"]
+    confidentiality = request.form["confidentiality"]
+    integrity = request.form["integrity"]
+    availability = request.form["availability"]
+    continuity = request.form["continuity"]
+    date = request.form["date"]
+    new_triage = Triage(project,iam,infrastructure,supplier,privacy,confidentiality,integrity,availability,continuity,date)
     triage_repository.save(new_triage)
     return redirect("/triages")
 
@@ -37,10 +44,17 @@ def edit_triage(id):
 
 @triages_blueprint.route("/triages/<id>", methods=['POST'])
 def update_triage(id):
-    name = request.form["name"]
-    type_of_business = request.form["type_of_business"]
-    contact_details = request.form["contact_details"]
-    triage = Triage(name,type_of_business,contact_details,id)
+    project = request.form["project"]
+    iam = request.form["iam"]
+    infrastructure = request.form["infrastructure"]
+    supplier = request.form["supplier"]
+    privacy = request.form["privacy"]
+    confidentiality = request.form["confidentiality"]
+    integrity = request.form["integrity"]
+    availability = request.form["availability"]
+    continuity = request.form["continuity"]
+    date = request.form["date"]
+    triage = Triage(project,iam,infrastructure,supplier,privacy,confidentiality,integrity,availability,continuity,date,id)
     triage_repository.update(triage)
     return redirect("/triages")
 

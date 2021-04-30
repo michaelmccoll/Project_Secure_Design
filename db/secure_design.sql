@@ -1,4 +1,3 @@
-DROP TABLE IF EXISTS categories;
 DROP TABLE IF EXISTS risks;
 DROP TABLE IF EXISTS controls;
 DROP TABLE IF EXISTS triage;
@@ -16,16 +15,17 @@ CREATE TABLE projects (
     status VARCHAR(25)
 );
 
-CREATE TABLE categories (
-    id SERIAL PRIMARY KEY,
-    category VARCHAR(50)
-);
-
 CREATE TABLE triage (
     id SERIAL PRIMARY KEY,
-    question VARCHAR(100),
     project_id INT REFERENCES projects(id) ON DELETE CASCADE,
-    category_id INT REFERENCES categories(id) ON DELETE CASCADE,
+    iam VARCHAR(25),
+    infrastructure VARCHAR(25),
+    supplier VARCHAR(25),
+    privacy VARCHAR(25),
+    confidentiality VARCHAR(25),
+    integrity VARCHAR(25),
+    availability VARCHAR(25),
+    continuity VARCHAR(25),
     date VARCHAR(25)
 );
 
@@ -34,8 +34,7 @@ CREATE TABLE risks (
     title VARCHAR(50),
     description VARCHAR(100),
     owner VARCHAR(50),
-    triage_id INT REFERENCES triage(id) ON DELETE CASCADE,
-    category_id INT REFERENCES categories(id) ON DELETE CASCADE
+    triage_id INT REFERENCES triage(id) ON DELETE CASCADE
 );
 
 CREATE TABLE controls (
@@ -43,8 +42,7 @@ CREATE TABLE controls (
     title VARCHAR(50),
     description VARCHAR(100),
     owner VARCHAR(50),
-    risk_id INT REFERENCES risks(id) ON DELETE CASCADE,
-    category_id INT REFERENCES categories(id) ON DELETE CASCADE
+    risk_id INT REFERENCES risks(id) ON DELETE CASCADE
 );
 
 CREATE TABLE control_reviews (

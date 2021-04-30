@@ -4,14 +4,35 @@
     <h1>Create a new triage</h1>
         <form action="/triages" method="POST">
             <div>
-                <label for="name">Triage Name: </label>
-                <input type="text" name="name" id="name">
+                <label for="project">Project Title: </label>
+                <input type="text" name="project" id="project">
 
-                <label for="type_of_business">Type of Business: </label>
-                <input type="text" name="type_of_business" id="type_of_business">
+                <label for="iam">Is the project implementing or changing any Identity & Access Managment methods?: </label>
+                <input type="text" name="iam" id="iam">
 
-                <label for="contact_details">Contact Details: </label>
-                <input type="text" name="contact_details" id="contact_details">
+                <label for="infrastructure">Is the project implementing or changing any Infrastructure: </label>
+                <input type="text" name="infrastructure" id="infrastructure">
+
+                <label for="supplier">Is the supplier implementing or changing any Supplier Relationships?: </label>
+                <input type="text" name="supplier" id="supplier">
+
+                <label for="privacy">Is the project implementing or changing any Personally Identifiable Information?: </label>
+                <input type="text" name="privacy" id="privacy">
+
+                <label for="confidentiality">What is the Confidentiality rating of information involved?: </label>
+                <input type="text" name="confidentiality" id="confidentiality">
+
+                <label for="integrity">What is the Integrity rating of information involved?: </label>
+                <input type="text" name="integrity" id="integrity">
+
+                <label for="availability">What is the Availability rating of information involved?: </label>
+                <input type="text" name="availability" id="availability">
+
+                <label for="continuity">What is the highest Business Continuity rating of the processes involved?: </label>
+                <input type="text" name="continuity" id="continuity">
+
+                <label for="date">Date of Triage: </label>
+                <input type="date" name="date" id="date">
 
                 <input class="submit" type="submit">
 

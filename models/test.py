@@ -1,7 +1,6 @@
 class Test:
 
-    def __init__(self, title,description,category,owner):
+    def __init__(self, title,description,owner):
         self.title = title
         self.description = description
-        self.category = category
         self.owner = owner

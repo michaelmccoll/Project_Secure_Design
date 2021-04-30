@@ -4,17 +4,15 @@ from models.project import Project
 from models.triage import Triage
 from models.risk import Risk
 from models.control import Control
-from models.categories import Category
 
 import repositories.project_repository as project_repository
 import repositories.triage_repository as triage_repository
 import repositories.risk_repository as risk_repository
 import repositories.control_repository as control_repository
-import repositories.category_repository as category_repository
 
 def save(control):
-    sql = "INSERT INTO controls(title,description,owner,risk_id,category_id) VALUES (%s,%s,%s,%s,%s) RETURNING id"
-    values = [control.title,control.description,control.owner,control.risk.id,control.category.id]
+    sql = "INSERT INTO controls(title,description,owner,risk_id) VALUES (%s,%s,%s,%s) RETURNING id"
+    values = [control.title,control.description,control.owner,control.risk.id]
     results = run_sql(sql,values)
     control.id = results[0]['id']
     return control
@@ -26,8 +24,7 @@ def select_all():
 
     for row in results:
         risk = risk_repository.select(row['risk_id'])
-        category = category_repository.select(row['category_id'])
-        control = Control(row['title'],row['description'],row['owner'],risk,category,row['id'])
+        control = Control(row['title'],row['description'],row['owner'],risk,row['id'])
         controls.append(control)
     return controls
 
@@ -37,10 +34,9 @@ def select(id):
     values = [id]
     result = run_sql(sql,values)[0]
     risk = risk_repository.select(result['risk_id'])
-    category = category_repository.select(result['category_id'])
 
     if result is not None:
-        control = Control(result['title'],result['description'],result['owner'],risk,category,result['id'])
+        control = Control(result['title'],result['description'],result['owner'],risk,result['id'])
     return control
 
 def delete_all():
@@ -53,8 +49,8 @@ def delete(id):
     run_sql(sql,values)
 
 def update(control):
-    sql = "UPDATE controls SET (title,description,owner,risk_id,category_id) = (%s,%s,%s,%s,%s) WHERE id = %s"
-    values = [control.title,control.description,control.owner,control.risk.id,control.category.id]
+    sql = "UPDATE controls SET (title,description,owner,risk_id) = (%s,%s,%s,%s) WHERE id = %s"
+    values = [control.title,control.description,control.owner,control.risk.id]
     run_sql(sql,values)
 
 # Find the controls by the consultant = xxx???

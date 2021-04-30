@@ -4,17 +4,15 @@ from models.project import Project
 from models.triage import Triage
 from models.risk import Risk
 from models.control import Control
-from models.categories import Category
 
 import repositories.project_repository as project_repository
 import repositories.triage_repository as triage_repository
 import repositories.risk_repository as risk_repository
 import repositories.control_repository as control_repository
-import repositories.category_repository as category_repository
 
 def save(risk):
-    sql = "INSERT INTO risks(title,description,owner,triage_id,category_id) VALUES (%s,%s,%s,%s,%s) RETURNING id"
-    values = [risk.title,risk.description,risk.owner,risk.triage.id,risk.category.id]
+    sql = "INSERT INTO risks(title,description,owner,triage_id) VALUES (%s,%s,%s,%s) RETURNING id"
+    values = [risk.title,risk.description,risk.owner,risk.triage.id]
     results = run_sql(sql,values)
     risk.id = results[0]['id']
     return risk
@@ -26,8 +24,7 @@ def select_all():
 
     for row in results:
         triage = triage_repository.select(row['triage_id'])
-        category = category_repository.select(row['category_id'])
-        risk = Risk(row['title'],row['description'],row['owner'],triage,category,row['id'])
+        risk = Risk(row['title'],row['description'],row['owner'],triage,row['id'])
         risks.append(risk)
     return risks
 
@@ -37,10 +34,9 @@ def select(id):
     values = [id]
     result = run_sql(sql,values)[0]
     triage = triage_repository.select(result['triage_id'])
-    category = category_repository.select(result['category_id'])
 
     if result is not None:
-        risk = Risk(result['title'],result['description'],result['owner'],triage,category,result['id'])
+        risk = Risk(result['title'],result['description'],result['owner'],triage,result['id'])
     return risk
 
 def delete_all():
@@ -53,8 +49,8 @@ def delete(id):
     run_sql(sql,values)
 
 def update(risk):
-    sql = "UPDATE risks SET (title,description,owner,triage_id,category_id) = (%s,%s,%s) WHERE id = %s"
-    values = [risk.title,risk.description,risk.owner,risk.triage.id,risk.category.id]
+    sql = "UPDATE risks SET (title,description,owner,triage_id) = (%s,%s,%s,%s) WHERE id = %s"
+    values = [risk.title,risk.description,risk.owner,risk.triage.id]
     run_sql(sql,values)
 
 # Find the risks by the consultant = xxx???

@@ -4,17 +4,15 @@ from models.project import Project
 from models.triage import Triage
 from models.risk import Risk
 from models.control import Control
-from models.categories import Category
 
 import repositories.project_repository as project_repository
 import repositories.triage_repository as triage_repository
 import repositories.risk_repository as risk_repository
 import repositories.control_repository as control_repository
-import repositories.category_repository as category_repository
 
 def save(triage):
-    sql = "INSERT INTO triage(question,project_id,category_id,date) VALUES (%s,%s,%s,%s) RETURNING id"
-    values = [triage.question,triage.project.id,triage.category.id,triage.date]
+    sql = "INSERT INTO triage(project_id,iam,infrastructure,supplier,privacy,confidentiality,integrity,availability,continuity,date) VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s) RETURNING id"
+    values = [triage.project.id,triage.iam,triage.infrastructure,triage.supplier,triage.privacy,triage.confidentiality,triage.integrity,triage.availability,triage.continuity,triage.date]
     results = run_sql(sql,values)
     triage.id = results[0]['id']
     return triage
@@ -26,8 +24,7 @@ def select_all():
 
     for row in results:
         project = project_repository.select(row['project_id'])
-        category = category_repository.select(row['category_id'])
-        triage = Triage(row['question'],project,category,row['id'])
+        triage = Triage(project,row['iam'],row['infrastructure'],row['supplier'],row['privacy'],row['confidentiality'],row['integrity'],row['availability'],row['continuity'],row['date'],row['id'])
         triages.append(triage)
     return triages
 
@@ -37,10 +34,9 @@ def select(id):
     values = [id]
     result = run_sql(sql,values)[0]
     project = project_repository.select(result['project_id'])
-    category = category_repository.select(result['category_id'])
 
     if result is not None:
-        triage = Triage(result['question'],project,category,result['id'])
+        triage = Triage(project,row['iam'],row['infrastructure'],row['supplier'],row['privacy'],row['confidentiality'],row['integrity'],row['availability'],row['continuity'],row['date'],row['id'])
     return triage
 
 def delete_all():
@@ -53,8 +49,8 @@ def delete(id):
     run_sql(sql,values)
 
 def update(triage):
-    sql = "UPDATE triage SET (question,project_id,category_id,date) = (%s,%s,%s,%s) WHERE id = %s"
-    values = [triage.question,triage.project.id,triage.category.id,triage.date]
+    sql = "UPDATE triage SET (project_id,iam,infrastructure,supplier,privacy,confidentiality,integrity,availability,continuity,date) = (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s) WHERE id = %s"
+    values = [triage.project.id,triage.iam,triage.infrastructure,triage.supplier,triage.privacy,triage.confidentiality,triage.integrity,triage.availability,triage.continuity,triage.date]
     run_sql(sql,values)
 
 # Find the triage by the project
@@ -70,7 +66,7 @@ def triage(project):
     triage = []
     for row in results:
         category = category_repository.select_all()
-        triage = Triage(row['question'],project,category,row['date'],row['id'])
+        triage = Triage(project,row['iam'],row['infrastructure'],row['supplier'],row['privacy'],row['confidentiality'],row['integrity'],row['availability'],row['continuity'],row['date'],row['id'])
         triage.append(triage)
     return triage
 

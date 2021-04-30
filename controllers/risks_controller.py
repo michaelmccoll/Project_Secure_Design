@@ -1,6 +1,6 @@
 from flask import Flask, render_template, request, redirect
 from flask import Blueprint
-from repositories import project_repository, triage_repository, risk_repository, control_repository, category_repository
+from repositories import project_repository, triage_repository, risk_repository, control_repository
 from models.risk import Risk
 
 risks_blueprint = Blueprint("risks",__name__)

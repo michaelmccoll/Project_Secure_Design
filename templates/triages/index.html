@@ -1,15 +1,37 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <h1>Our List of triages</h1>
+    <h1>List of triages</h1>
     <a href="/triages/new">Create new triage</a>
-    <div class="index">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Project</th>
+                <th>IAM</th>
+                <th>Infrastructure</th>
+                <th>Supplier</th>
+                <th>Privacy</th>
+                <th>Confidentiality</th>
+                <th>Integrity</th>
+                <th>Availability</th>
+                <th>Business Continuity</th>
+            </tr>
+        </thead>
         {% for triage in all_triages %}
-        <div>
-            <hr>
-            <p><b>Type of Business: </b>{{triage.question}}</p>
-            <a href="/triages/{{triage.id}}">Consultants Assigned</a>
-        </div>
+        <tbody>
+            <tr>
+                <td>{{triage.project.title}}</td>
+                <td>{{triage.iam}}</td>
+                <td>{{triage.infrastructure}}</td>
+                <td>{{triage.supplier}}</td>
+                <td>{{triage.privacy}}</td>
+                <td>{{triage.confidentiality}}</td>
+                <td>{{triage.integrity}}</td>
+                <td>{{triage.availability}}</td>
+                <td>{{triage.continuity}}</td>
+                <td><a href="/triages/{{triage.id}}">Consultants Assigned</a></td>
+            </tr>
+        </tbody>
         {% endfor %}
-    </div>
+    </table>
 {% endblock %}

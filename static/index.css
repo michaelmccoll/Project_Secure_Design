@@ -1,7 +1,24 @@
-.index {
+/* .index {
     display: grid;
     grid-auto-flow: row;
-    grid-template-columns: 50% 50%;
+    grid-template-columns: 100%;
     justify-content: center;
     align-items: center;
+} */
+
+.table {
+	margin-top: 10px;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+th {
+    padding: 10px;
+    background-color: rgb(88, 78, 134);
+    color: white;
+}
+
+td {
+    padding: 4px;
+    margin: 4px;
 }

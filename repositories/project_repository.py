@@ -4,13 +4,11 @@ from models.project import Project
 from models.triage import Triage
 from models.risk import Risk
 from models.control import Control
-from models.categories import Category
 
 import repositories.project_repository as project_repository
 import repositories.triage_repository as triage_repository
 import repositories.risk_repository as risk_repository
 import repositories.control_repository as control_repository
-import repositories.category_repository as category_repository
 
 def save(project):
     sql = "INSERT INTO projects(title,sponsor,project_manager,start_date,end_date,status) VALUES (%s,%s,%s,%s,%s,%s) RETURNING id"
