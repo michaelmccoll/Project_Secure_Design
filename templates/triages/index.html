@@ -2,7 +2,7 @@
 
 {% block content %}
     <h1>List of triages</h1>
-    <a href="/triages/new">Create new triage</a>
+    <hr>
     <table class="table">
         <thead>
             <tr>
@@ -29,7 +29,6 @@
                 <td>{{triage.integrity}}</td>
                 <td>{{triage.availability}}</td>
                 <td>{{triage.continuity}}</td>
-                <td><a href="/triages/{{triage.id}}">Consultants Assigned</a></td>
             </tr>
         </tbody>
         {% endfor %}

@@ -30,9 +30,9 @@ def create_project():
 def show_project(id):
     project = project_repository.select(id)
     triage = triage_repository.triage(project)
-    risks = risk_repository.risks(project)
-    controls = control_repository.controls(project)
-    return render_template("/projects/show.html",project=project,triage=triage,risks=risks,controls=controls)
+    # risks = risk_repository.risks(project)
+    # controls = control_repository.controls(project)
+    return render_template("/projects/show.html",project=project,triage=triage)
 
 @projects_blueprint.route("/projects/<id>/edit", methods=['GET'])
 def edit_project(id):

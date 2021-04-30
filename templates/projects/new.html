@@ -14,13 +14,21 @@
                 <input type="text" name="project_manager" id="project_manager">
 
                 <label for="start_date">Start Date: </label>
-                <input type="text" name="start_date" id="start_date">
+                <input type="date" name="start_date" id="start_date">
 
                 <label for="end_date">End Date: </label>
-                <input type="text" name="end_date" id="end_date">
+                <input type="date" name="end_date" id="end_date">
         
                 <label for="status">Status: </label>
-                <input type="text" name="status" id="status">
+                <select name="status" id="status">
+                    <option value="">Select Status</option>
+                    <option value="Not Started">Not Started</option>
+                    <option value="Planning">Planning</option>
+                    <option value="Design">Design</option>
+                    <option value="Development">Development</option>
+                    <option value="Testing">Testing</option>
+                    <option value="Complete">Complete</option>
+                </select>
 
                 <input class="submit" type="submit">
             </div>

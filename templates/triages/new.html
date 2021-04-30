@@ -4,32 +4,60 @@
     <h1>Create a new triage</h1>
         <form action="/triages" method="POST">
             <div>
-                <label for="project">Project Title: </label>
-                <input type="text" name="project" id="project">
 
                 <label for="iam">Is the project implementing or changing any Identity & Access Managment methods?: </label>
-                <input type="text" name="iam" id="iam">
+                <select name="iam" id="iam">
+                    <option value="Yes">Yes</option>
+                    <option value="No">No</option>
+                </select>
 
                 <label for="infrastructure">Is the project implementing or changing any Infrastructure: </label>
-                <input type="text" name="infrastructure" id="infrastructure">
+                <select name="iam" id="iam">
+                    <option value="Yes">Yes</option>
+                    <option value="No">No</option>
+                </select>
 
                 <label for="supplier">Is the supplier implementing or changing any Supplier Relationships?: </label>
-                <input type="text" name="supplier" id="supplier">
+                <select name="supplier" id="supplier">
+                    <option value="Yes">Yes</option>
+                    <option value="No">No</option>
+                </select>
 
                 <label for="privacy">Is the project implementing or changing any Personally Identifiable Information?: </label>
-                <input type="text" name="privacy" id="privacy">
+                <select name="privacy" id="privacy">
+                    <option value="Yes">Yes</option>
+                    <option value="No">No</option>
+                </select>
 
                 <label for="confidentiality">What is the Confidentiality rating of information involved?: </label>
-                <input type="text" name="confidentiality" id="confidentiality">
+                <select name="confidentiality" id="confidentiality">
+                    <option value="Strictly Confidential">Strictly Confidential</option>
+                    <option value="Confidential">Confidential/option>
+                    <option value="Internal">Internal</option>
+                    <option value="Public">Public</option>
+                </select>
 
                 <label for="integrity">What is the Integrity rating of information involved?: </label>
-                <input type="text" name="integrity" id="integrity">
+                <select name="integrity" id="integrity">
+                    <option value="High">High</option>
+                    <option value="Medium">Medium</option>
+                    <option value="Low">Low</option>
+                </select>
 
                 <label for="availability">What is the Availability rating of information involved?: </label>
-                <input type="text" name="availability" id="availability">
+                <select name="availability" id="availability">
+                    <option value="High">High</option>
+                    <option value="Medium">Medium</option>
+                    <option value="Low">Low</option>
+                </select>
 
                 <label for="continuity">What is the highest Business Continuity rating of the processes involved?: </label>
-                <input type="text" name="continuity" id="continuity">
+                <select name="continuity" id="continuity">
+                    <option value="Critical">Critical</option>
+                    <option value="High">High</option>
+                    <option value="Medium">Medium</option>
+                    <option value="Low">Low</option>
+                </select>
 
                 <label for="date">Date of Triage: </label>
                 <input type="date" name="date" id="date">

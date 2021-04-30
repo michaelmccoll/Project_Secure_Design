@@ -14,6 +14,7 @@
                     <th>End Date</th>
                     <th>Status</th>
                     <th>More Info</th>
+                    <th>Triage</th>
                 </tr>
             </thead>
         {% for project in all_projects %}
@@ -25,7 +26,8 @@
                     <td>{{project.start_date}}</td>
                     <td>{{project.end_date}}</td>
                     <td>{{project.status}}</td>
-                    <td><a href="/projects/{{project.id}}">More Details</a></td>
+                    <td><a href="/projects/{{project.id}}">More Info</a></td>
+                    <td><a href="/triages/new">Complete Triage</a></td>
                 </tr>
             </tbody>
         {% endfor %}
