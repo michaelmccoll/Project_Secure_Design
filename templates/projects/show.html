@@ -1,9 +1,8 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <h1>Project Name: {{project.title}}</h1>
     <div class="project-profile">
-
+        <h1 class="name">Project Name: {{project.title}}</h1>
         <div class="update">
             <form action="/projects/{{project.id}}/edit">
                 <input class="submit" type="submit" value="Edit project">
@@ -15,14 +14,14 @@
             </form>
         </div>
 
-        <div class="triages">
+        <div class="triage">
             <ul>
                 <h3>Triage:</h3>
                 <h4>IAM: {{triage.iam}}</h4>
                 <h4>Infrastrucure: {{triage.infrastructure}}</h4>
                 <h4>Supplier: {{triage.supplier}}</h4>
                 <h4>Privacy: {{triage.privacy}}</h4>
-                <h4>Confidentiality {{triage.confidentiality}}</h4>
+                <h4>Confidentiality: {{triage.confidentiality}}</h4>
                 <h4>Integrity: {{triage.integrity}}</h4>
                 <h4>Availability: {{triage.availability}}</h4>
                 <h4>Coninuity: {{triage.continuity}}</h4>
@@ -41,5 +40,25 @@
             </ul>
         </div>
 
+        <div class="controls">
+            <ul>
+                <h3>Controls:</h3>
+                {% for control in controls %}
+                    <div>
+                        <p>{{control.title}}</p>
+                    </div>
+                {% endfor %}
+            </ul>
+        </div>
+
+        <div class="triageEdit">
+            <h3>Edit Triage</h3>
+        </div>
+        <div class="risksReview">
+            <h3>Risk Review</h3>
+        </div>
+        <div class="controlsReview">
+            <h3>Control Review</h3>
+        </div>
     </div>
 {% endblock %}

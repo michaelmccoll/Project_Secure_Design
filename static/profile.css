@@ -7,8 +7,17 @@
     padding: 4px;
 }
 
-.triages {
-    grid-area: role;
+.triage {
+    grid-area: triage;
+    border:dashed;
+    border-width: 2px;
+    border-color: rgb(182, 179, 179);
+    margin: 4px;
+    padding: 4px;
+}
+
+.triageEdit {
+    grid-area: triageEdit;
     border:dashed;
     border-width: 2px;
     border-color: rgb(182, 179, 179);
@@ -17,7 +26,34 @@
 }
 
 .risks {
-    grid-area: summary;
+    grid-area: risks;
+    border:dashed;
+    border-width: 2px;
+    border-color: rgb(182, 179, 179);
+    margin: 4px;
+    padding: 4px;
+}
+
+.controls {
+    grid-area: controls;
+    border:dashed;
+    border-width: 2px;
+    border-color: rgb(182, 179, 179);
+    margin: 4px;
+    padding: 4px;
+}
+
+.controlsReview {
+    grid-area: controlsReview;
+    border:dashed;
+    border-width: 2px;
+    border-color: rgb(182, 179, 179);
+    margin: 4px;
+    padding: 4px;
+}
+
+.risksReview {
+    grid-area: risksReview;
     border:dashed;
     border-width: 2px;
     border-color: rgb(182, 179, 179);
@@ -54,10 +90,13 @@
     margin: 4px;
     padding: 4px;
     grid-template-areas:
-        "name name picture day_rate"
-        "role role picture update"
-        "summary summary picture delete"
-        "clients clients assignments assignments";
+        "name name update delete"
+        "triage risks controls controls"
+        "triage risks controls controls"
+        "triage risks controls controls"
+        "triage risks controls controls"
+        "triageEdit risksReview controlsReview controlsReview"
+       
 }
 
 body > div > h3 {
@@ -68,4 +107,10 @@ body > div > h3 {
 body > div > h2 {
     display: flex;
     align-items: center;
+}
+
+h4 {
+    display: flex;
+    align-items: center;
+    font-size: 14px;
 }
