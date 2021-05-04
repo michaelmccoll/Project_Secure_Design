@@ -33,7 +33,7 @@ def select(id):
     sql = "SELECT * FROM projects WHERE id = %s"
     values = [id]
     result = run_sql(sql,values)[0]
-    triage = triage_repository.select(row['triage_id'])
+    triage = triage_repository.select(result['triage_id'])
 
     if result is not None:
         project = Project(result['title'],result['sponsor'],result['project_manager'],result['start_date'],result['end_date'],result['status'],triage,result['id'])

@@ -7,12 +7,9 @@
         {% for risk in all_risks %}
             <div>
                 <hr>
-                <h2><b>{{risk.description}} for {{risk.client.name}}</b></h2>
-                <p><b>Contact Details: </b>{{risk.client.contact_details}}</p>
-                <p><b>Consultant Assigned: </b>{{risk.consultant.name}}</p>
-                <p><b>Days Required: </b>{{risk.days_required}}</p>
-                <p><b>Start Date: </b>{{risk.start_date}}<b> --- End Date: </b>{{risk.end_date}}  </p>
-                <p><b>Total Cost: </b>£{{risk.total_cost}}</p>
+                <h2><b>Risk Title: </b>{{risk.title}}</h2>
+                <p><b>Risk Description: </b>{{risk.description}}</p>
+                <p><b>Risk Owner: </b>{{risk.owner}}</p>
                 <a href="/risks/{{risk.id}}">Edit risk</a>
             </div>
         {% endfor %}

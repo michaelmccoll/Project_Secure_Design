@@ -23,7 +23,7 @@ def select_all():
     results = run_sql(sql)
 
     for row in results:
-        risk = risk_repository.select(row['risk_id'])
+        risk = risk_repository.select(row['risks_id'])
         triage = Triage(row['iam'],row['infrastructure'],row['supplier'],row['privacy'],row['confidentiality'],row['integrity'],row['availability'],row['continuity'],row['date'],risk,row['id'])
         triages.append(triage)
     return triages
@@ -33,10 +33,10 @@ def select(id):
     sql = "SELECT * FROM triage WHERE id = %s"
     values = [id]
     result = run_sql(sql,values)[0]
-    risk = risk_repository.select(row['risk_id'])
+    risk = risk_repository.select(result['risks_id'])
 
     if result is not None:
-        triage = Triage(row['iam'],row['infrastructure'],row['supplier'],row['privacy'],row['confidentiality'],row['integrity'],row['availability'],row['continuity'],row['date'],risk,row['id'])
+        triage = Triage(result['iam'],result['infrastructure'],result['supplier'],result['privacy'],result['confidentiality'],result['integrity'],result['availability'],result['continuity'],result['date'],risk,result['id'])
     return triage
 
 def delete_all():

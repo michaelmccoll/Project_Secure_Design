@@ -24,8 +24,8 @@ def select_all():
     results = run_sql(sql)
 
     for row in results:
-        controls = "Control Test"
-        risk = Risk(row['title'],row['description'],row['owner'],controls,row['id'])
+        control = control_repository.select(row['controls_id'])
+        risk = Risk(row['title'],row['description'],row['owner'],control,row['id'])
         risks.append(risk)
     return risks
 
@@ -34,7 +34,7 @@ def select(id):
     sql = "SELECT * FROM risks WHERE id = %s"
     values = [id]
     result = run_sql(sql,values)[0]
-    controls = "Control Test"
+    controls = control_repository.select(result['controls_id'])
 
     if result is not None:
         risk = Risk(result['title'],result['description'],result['owner'],controls,result['id'])
