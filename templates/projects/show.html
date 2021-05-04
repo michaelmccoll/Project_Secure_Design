@@ -1,15 +1,8 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <h1>Show project page</h1>
-    <div class="profile">
-        <h2 class="title">{{project.title}}</h2>
-        <h3 class="sponsor">{{project.sponsor}}</h3>
-        <h3 class="status">{{project.status}}</h3>
-
-        <div class="picture">
-            <img src="/static/profiles/mmccoll.jpeg" alt="">
-        </div>
+    <h1>Project Name: {{project.title}}</h1>
+    <div class="project-profile">
 
         <div class="update">
             <form action="/projects/{{project.id}}/edit">
@@ -24,18 +17,16 @@
 
         <div class="triages">
             <ul>
-                <h3>triages:</h3>
-                {% for triage in triages %}
-                    <div>
-                        <p>{{triage.question}}</p>
-                    </div> 
-                {% endfor %}
+                <h3>Triage:</h3>
+                <h3>{{triage}}</h3>
+                <h4>IAM: {{triage.iam}}</h4>
+                <h4>Infrastrucure: {{triage.infrastructure}}</h4>
             </ul>
         </div>
 
         <div class="risks">
             <ul>
-                <h3>risks:</h3>
+                <h3>Risks:</h3>
                 {% for risk in risks %}
                     <div>
                         <p>{{risk.title}}</p>

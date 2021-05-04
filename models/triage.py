@@ -1,7 +1,6 @@
 class Triage:
 
-    def __init__(self, project,iam,infrastructure,supplier,privacy,confidentiality,integrity,availability,continuity,date,id = None):
-        self.project = project
+    def __init__(self, iam,infrastructure,supplier,privacy,confidentiality,integrity,availability,continuity,date,risks = None,id = None):
         self.iam = iam
         self.infrastructure = infrastructure
         self.supplier = supplier
@@ -11,4 +10,5 @@ class Triage:
         self.availability = availability
         self.continuity = continuity
         self.date = date
+        self.risks = risks
         self.id = id

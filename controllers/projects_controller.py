@@ -29,7 +29,9 @@ def create_project():
 @projects_blueprint.route("/projects/<id>")
 def show_project(id):
     project = project_repository.select(id)
-    triage = triage_repository.triage(project)
+    # need to feed 'project_id' (19) into next line, that then returns triage 'id' (8)
+    # OR refactor to include triage Id in the project table
+    triage = triage_repository.select(id)
     # risks = risk_repository.risks(project)
     # controls = control_repository.controls(project)
     return render_template("/projects/show.html",project=project,triage=triage)

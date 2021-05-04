@@ -7,16 +7,7 @@
     padding: 4px;
 }
 
-.picture {
-    grid-area: picture;
-    border:dashed;
-    border-width: 2px;
-    border-color: rgb(182, 179, 179);
-    margin: 4px;
-    padding: 4px;
-}
-
-.role {
+.triages {
     grid-area: role;
     border:dashed;
     border-width: 2px;
@@ -25,35 +16,8 @@
     padding: 4px;
 }
 
-.summary {
+.risks {
     grid-area: summary;
-    border:dashed;
-    border-width: 2px;
-    border-color: rgb(182, 179, 179);
-    margin: 4px;
-    padding: 4px;
-}
-
-.day_rate {
-    grid-area: day_rate;
-    border:dashed;
-    border-width: 2px;
-    border-color: rgb(182, 179, 179);
-    margin: 4px;
-    padding: 4px;
-}
-
-.clients {
-    grid-area: clients;
-    border:dashed;
-    border-width: 2px;
-    border-color: rgb(182, 179, 179);
-    margin: 4px;
-    padding: 4px;
-}
-
-.assignments {
-    grid-area: assignments;
     border:dashed;
     border-width: 2px;
     border-color: rgb(182, 179, 179);
@@ -83,7 +47,7 @@
     vertical-align: middle;
 }
 
-.profile {
+.project-profile {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
     grid-template-rows: auto;

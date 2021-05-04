@@ -11,8 +11,8 @@ import repositories.risk_repository as risk_repository
 import repositories.control_repository as control_repository
 
 def save(project):
-    sql = "INSERT INTO projects(title,sponsor,project_manager,start_date,end_date,status) VALUES (%s,%s,%s,%s,%s,%s) RETURNING id"
-    values = [project.title,project.sponsor,project.project_manager,project.start_date,project.end_date,project.status]
+    sql = "INSERT INTO projects(title,sponsor,project_manager,start_date,end_date,status,triage_id) VALUES (%s,%s,%s,%s,%s,%s,%s) RETURNING id"
+    values = [project.title,project.sponsor,project.project_manager,project.start_date,project.end_date,project.status,project.triage.id]
     results = run_sql(sql,values)
     project.id = results[0]['id']
     return project
@@ -23,7 +23,8 @@ def select_all():
     results = run_sql(sql)
 
     for row in results:
-        project = Project(row['title'],row['sponsor'],row['project_manager'],row['start_date'],row['end_date'],row['status'],row['id'])
+        triage = triage_repository.select(row['triage_id'])
+        project = Project(row['title'],row['sponsor'],row['project_manager'],row['start_date'],row['end_date'],row['status'],triage,row['id'])
         projects.append(project)
     return projects
 
@@ -32,9 +33,10 @@ def select(id):
     sql = "SELECT * FROM projects WHERE id = %s"
     values = [id]
     result = run_sql(sql,values)[0]
+    triage = triage_repository.select(row['triage_id'])
 
     if result is not None:
-        project = Project(result['title'],result['sponsor'],result['project_manager'],result['start_date'],result['end_date'],result['status'],result['id'])
+        project = Project(result['title'],result['sponsor'],result['project_manager'],result['start_date'],result['end_date'],result['status'],triage,result['id'])
     return project
 
 def delete_all():
@@ -47,8 +49,8 @@ def delete(id):
     run_sql(sql,values)
 
 def update(project):
-    sql = "UPDATE projects SET (title,sponsor,project_manager,start_date,end_date,status) = (%s,%s,%s,%s,%s,%s) WHERE id = %s"
-    values = [project.title,project.sponsor,project.project_manager,project.start_date,project.end_date,project.status]
+    sql = "UPDATE projects SET (title,sponsor,project_manager,start_date,end_date,status,triage_id) = (%s,%s,%s,%s,%s,%s,%s) WHERE id = %s"
+    values = [project.title,project.sponsor,project.project_manager,project.start_date,project.end_date,project.status,project.triage.id]
     run_sql(sql,values)
 
 # Find the projects by the consultant = xxx???

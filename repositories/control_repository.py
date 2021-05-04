@@ -11,8 +11,8 @@ import repositories.risk_repository as risk_repository
 import repositories.control_repository as control_repository
 
 def save(control):
-    sql = "INSERT INTO controls(title,description,owner,risk_id) VALUES (%s,%s,%s,%s) RETURNING id"
-    values = [control.title,control.description,control.owner,control.risk.id]
+    sql = "INSERT INTO controls(title,description,owner) VALUES (%s,%s,%s) RETURNING id"
+    values = [control.title,control.description,control.owner]
     results = run_sql(sql,values)
     control.id = results[0]['id']
     return control
@@ -23,8 +23,7 @@ def select_all():
     results = run_sql(sql)
 
     for row in results:
-        risk = risk_repository.select(row['risk_id'])
-        control = Control(row['title'],row['description'],row['owner'],risk,row['id'])
+        control = Control(row['title'],row['description'],row['owner'],row['id'])
         controls.append(control)
     return controls
 
@@ -33,10 +32,9 @@ def select(id):
     sql = "SELECT * FROM controls WHERE id = %s"
     values = [id]
     result = run_sql(sql,values)[0]
-    risk = risk_repository.select(result['risk_id'])
 
     if result is not None:
-        control = Control(result['title'],result['description'],result['owner'],risk,result['id'])
+        control = Control(result['title'],result['description'],result['owner'],result['id'])
     return control
 
 def delete_all():
@@ -49,8 +47,8 @@ def delete(id):
     run_sql(sql,values)
 
 def update(control):
-    sql = "UPDATE controls SET (title,description,owner,risk_id) = (%s,%s,%s,%s) WHERE id = %s"
-    values = [control.title,control.description,control.owner,control.risk.id]
+    sql = "UPDATE controls SET (title,description,owner) = (%s,%s,%s) WHERE id = %s"
+    values = [control.title,control.description,control.owner]
     run_sql(sql,values)
 
 # Find the controls by the consultant = xxx???
